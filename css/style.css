@@ -8,25 +8,28 @@
 } 
 
 body{
-	width: 100%;
 	margin: 0 auto;
 	min-width: 500px;
-	max-width: 1300px;
+  max-width: 100%;
+ 
 }
 
 .header-dark {
   display: inline-block;
-  width:100%;
+  
 	float:left;
 	min-height: 1px;
+  max-height: 300px;
+  max-width: inherit;
   padding-bottom: 200px;
-  background-size:500px; 
+  background-size: 45%; 
   margin-top:-30px;
   background-image: url('../images/header_image.jpg');
+  opacity: 0.9;
 }
 
 #meni{
-  padding-top:20px;
+  padding-top:40px;
   font-size:16px;
   margin-left: 1000px;
   text-decoration: none;
