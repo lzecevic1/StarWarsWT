@@ -7,13 +7,23 @@
     src: url('../fonts/starjedi.ttf')
 } 
 
+.col-1 {width: 25%;}
+.col-2 {width: 50%;}
+.col-3 {width: 75%;}
+.col-4 {width: 100%;}
+
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+}
+
 body{
 	margin: 0 auto;
 	min-width: 500px;
   max-width: 100%;
 }
 
-.header-dark {
+/*.header-dark {
   display: inline-block;
 	float:left;
 	min-height: 1px;
@@ -47,4 +57,10 @@ body{
 #meni li :visited, :active, :link{
   text-decoration: none;
   color: white;  
+}*/
+
+#tatooine{
+    max-width: 100%;
+    height: auto;
+    src: url('../images/tatooine.jpg');
 }
