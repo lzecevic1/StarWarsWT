@@ -1,0 +1,53 @@
+*{
+	box-sizing: border-box;
+}
+
+ @font-face { 
+    font-family: starJedi; 
+    src: url('../fonts/starjedi.ttf')
+} 
+
+body{
+	width: 100%;
+	margin: 0 auto;
+	min-width: 500px;
+	max-width: 1300px;
+}
+
+.header-dark {
+  display: inline-block;
+  width:100%;
+	float:left;
+	min-height: 1px;
+  padding-bottom: 200px;
+  background-size:500px; 
+  margin-top:-30px;
+  background-image: url('../images/header_image.jpg');
+}
+
+#meni{
+  padding-top:20px;
+  font-size:16px;
+  margin-left: 1000px;
+  text-decoration: none;
+}
+
+#meni li{
+  display: inline-block;
+  font-family: starJedi;
+}
+
+#meni li :hover{
+  text-decoration: underline;
+  color: white;  
+  
+}
+
+#meni li :visited, :active, :link{
+  text-decoration: none;
+  color: white;  
+}
+
+
+
+
