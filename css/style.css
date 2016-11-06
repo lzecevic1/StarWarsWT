@@ -186,6 +186,13 @@ body{
   background-color:#ccccdd;
   font-family: starJedi;
   font-size: 15px;
+  width: 150px;
+}
+
+@media only screen and (max-width:600px){
+#submit-button{
+  width:50%;
+  }
 }
 
 #submit-button:hover{
@@ -230,6 +237,7 @@ h2{
   font-size: 18px;
 }
 
+
 .shop-article{
   padding-left: 150px;
   font-family: starJedi;
@@ -249,8 +257,9 @@ h2{
   padding-left: 10%;
 }
 .shop-article h4{
-  text-align: right;
+  text-align: center;
   padding-right: 40px;
+
 }
 
 .footer-dark {
