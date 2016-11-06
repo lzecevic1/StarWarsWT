@@ -43,44 +43,55 @@ body{
   margin-left: 750px;
   text-decoration: none;
 }
+*/
+
+.header-standard{
+  top: 0px;
+  background-color: black;
+  width: 100%;
+  height: 60px;
+  text-align: right;
+  display: inline-block;
+}
 
 #meni li{
   display: inline-block;
+  padding-right: 10px;
   font-family: starJedi;
+}
+
+#nav ul li a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 0 10px;
 }
 
 #meni li :hover{
   text-decoration: underline;
   color: white;  
-  
 }
 
 #meni li :visited, :active, :link{
   text-decoration: none;
   color: white;  
-}*/
-
-#tatooine{
-    max-width: 50%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
 }
 
 .forma-login{
+  flex: 1;
   position: absolute;
-  top:0;
+  top: 8%;
   bottom: 0;   
   left: 0;
   right: 0;
   margin: auto;
-  background-image: url('../images/background-login.jpg');
   background-size: 100% 100%;
+  background-image: url('../images/background-login.jpg');
   background-repeat:no-repeat;
 }
 
 .forma-login form{
-  padding-top: 11%;
+  padding-top: 9%;
   text-align: center;
   margin: 0 auto;
 }
@@ -96,11 +107,22 @@ body{
 
 #submit-button{
   text-align: center;
+  background-color:#ccccdd;
   font-family: starJedi;
   font-size: 15px;
-  background-color: #ccccdd;
 }
 
 #submit-button:hover{
-  background-color:#bbbbee;
+  background-color: #bbbbee;
+}
+
+#home-link{
+  font-size: 20px;
+}
+
+#tatooine{
+    max-width: 50%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
