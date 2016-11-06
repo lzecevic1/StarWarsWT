@@ -4,8 +4,14 @@
 
  @font-face { 
     font-family: starJedi; 
-    src: url('../fonts/starjedi.ttf')
+    src: url('../fonts/starjedi.ttf');
 } 
+
+ @font-face { 
+    font-family: starWars; 
+    src: url('../fonts/stjedi.ttf')
+} 
+
 
 .col-1 {width: 25%;}
 .col-2 {width: 50%;}
@@ -32,7 +38,7 @@ body{
   text-align: left;
   display: inline-block;
 }
-
+/*
 .index-main{
   flex: 1;
   position: absolute;
@@ -44,14 +50,7 @@ body{
   background-size: 100% 100%;
   background-image: url('../images/background-image.jpg');
   background-repeat:no-repeat;
-}
-
-#tatooine{
-    max-width: 50%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-}
+}*/
 
 #meni li{
   display: inline-block;
@@ -59,19 +58,12 @@ body{
   font-family: starJedi;
 }
 
-#nav ul li a {
-  display: block;
-  color: white;
-  text-decoration: none;
-  padding: 0 10px;
-}
-
-#meni li :hover{
+#meni li :hover, .index-main a:hover{
   text-decoration: underline;
   color: white;  
 }
 
-#meni li :visited, :active, :link{
+#meni li :visited, :active, :link, .index-main a :visited, :active, :link{
   text-decoration: none;
   color: white;  
 }
@@ -133,5 +125,34 @@ body{
 #home-link{
   font-size: 20px;
   padding-right: 15px;
+}
+
+.artical-main{
+  padding-left: 250px;
+  z-index: 3;
+  font-family: starJedi;
+  color: white;
+  padding-right: 250px;
+  background-image: url('../images/background-image.jpg');
+  margin-top:-25px;
+  padding-bottom: 30px;
+}
+
+#tatooine{
+  text-align: center;
+  max-width: 80%;
+  height: auto;
+  display: block;
+  padding-left: 10%;
+}
+
+h1{
+  font-size: 25px;
+  margin-left: -50px;
+  padding-top: 20px;
+}
+
+h2{
+  font-size: 18px;
 }
 
