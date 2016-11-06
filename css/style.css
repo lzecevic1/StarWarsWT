@@ -24,34 +24,33 @@ body{
   width: 100%;
 }
 
-/*.header-dark {
-  display: inline-block;
-	float:left;
-	min-height: 1px;
-  max-height: 300px;
-  max-width: inherit;
-  padding-bottom: 200px;
-  background-size: 45%; 
-  margin-top:-30px;
-  background-image: url('../images/header_image.jpg');
-  opacity: 0.9;
-}
-
-#meni{
-  padding-top:40px;
-  font-size:16px;
-  margin-left: 750px;
-  text-decoration: none;
-}
-*/
-
 .header-standard{
   top: 0px;
   background-color: black;
   width: 100%;
   height: 60px;
-  text-align: right;
+  text-align: left;
   display: inline-block;
+}
+
+.index-main{
+  flex: 1;
+  position: absolute;
+  top: 8%;
+  bottom: 0;   
+  left: 0;
+  right: 0;
+  margin: auto;
+  background-size: 100% 100%;
+  background-image: url('../images/background-image.jpg');
+  background-repeat:no-repeat;
+}
+
+#tatooine{
+    max-width: 50%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
 
 #meni li{
@@ -77,7 +76,7 @@ body{
   color: white;  
 }
 
-.forma-login{
+.forma-login, .forma-contact{
   flex: 1;
   position: absolute;
   top: 8%;
@@ -96,9 +95,24 @@ body{
   margin: 0 auto;
 }
 
-.forma-login input{
-  width: 230px;
+.forma-contact form{
+  padding-top: 6%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.forma-login input, .forma-contact input{
+  width: 300px;
   height: 40px;
+}
+
+.forma-contact textarea{
+  width: 300px;
+  height: 70px;
+}
+
+.forma-login li, .forma-contact li{
+  padding-right: 55px;
 }
 
 #submit-button-li{
@@ -118,11 +132,6 @@ body{
 
 #home-link{
   font-size: 20px;
+  padding-right: 15px;
 }
 
-#tatooine{
-    max-width: 50%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-}
