@@ -21,7 +21,7 @@ body{
 	margin: 0 auto;
   padding: 0 auto;
 	min-width: 500px;
-  max-width: 100%;
+  width: 100%;
 }
 
 /*.header-dark {
@@ -65,4 +65,42 @@ body{
     height: auto;
     display: block;
     margin: 0 auto;
+}
+
+.forma-login{
+  position: absolute;
+  top:0;
+  bottom: 0;   
+  left: 0;
+  right: 0;
+  margin: auto;
+  background-image: url('../images/background-login.jpg');
+  background-size: 100% 100%;
+  background-repeat:no-repeat;
+}
+
+.forma-login form{
+  padding-top: 11%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.forma-login input{
+  width: 230px;
+  height: 40px;
+}
+
+#submit-button-li{
+  padding-top: 5px;
+}
+
+#submit-button{
+  text-align: center;
+  font-family: starJedi;
+  font-size: 15px;
+  background-color: #ccccdd;
+}
+
+#submit-button:hover{
+  background-color:#bbbbee;
 }
