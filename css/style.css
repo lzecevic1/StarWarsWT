@@ -63,9 +63,14 @@ body{
   color: white;  
 }
 
-#meni li :visited, :active, :link, .index-main a :visited, :active, :link{
+#meni li :visited, :active, :link{
   text-decoration: none;
   color: white;  
+}
+
+.artical-main h1 :visited, :active, :link{
+  text-decoration: none;
+  color: white;
 }
 
 .forma-login, .forma-contact{
@@ -146,6 +151,10 @@ body{
   padding-left: 10%;
 }
 
+@media (max-width:767px){
+#tatooine { max-width:200px; }
+}
+
 h1{
   font-size: 25px;
   margin-left: -50px;
@@ -155,4 +164,5 @@ h1{
 h2{
   font-size: 18px;
 }
+
 
