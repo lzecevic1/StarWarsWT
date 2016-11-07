@@ -8,4 +8,4 @@ Stranica s detaljima o planetama i stanovnicima, vrstama klonova, brodova. Clanc
 Bugovi:
 
 - meni nije skalabilan, linkovi idu jedni ispod drugih kada se prozor smanjuje (kad se smanji ispod 920 px)
-Rješenje: Kada se smanji ispod 920 px, napraviti neku ikonicu, koja ce prikazivati meni kada se klikne na nju.
+	Rješenje: Kada se smanji ispod 920 px, napraviti neku ikonicu, koja ce prikazivati meni kada se klikne na nju.

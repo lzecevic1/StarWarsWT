@@ -78,7 +78,7 @@ body{
   color: white;
 }
 
-.forma-login, .forma-contact, .forma-register{
+.forma-login, .forma-register{
   flex: 1;
   position: absolute;
   top: 8%;
@@ -87,11 +87,11 @@ body{
   right: 0;
   margin: auto;
   background-size: 100% 100%;
-  background-image: url('../images/background-login.jpg');
-  background-repeat:no-repeat;
+  background-image: url('../images/backgroud-vader.png');
+  background-repeat: no-repeat;
 }
 
-.forma-register{
+.forma-contact{
   flex: 1;
   position: absolute;
   top: 8%;
@@ -100,8 +100,8 @@ body{
   right: 0;
   margin: auto;
   background-size: 100% 100%;
-  background-image: url('../images/background-register.jpg');
-  background-repeat:no-repeat;
+  background-image: url('../images/background-final.jpg');
+  background-repeat: no-repeat;
 }
 
 .forma-login form{
@@ -192,19 +192,19 @@ h1{
   padding-top: 20px;
 }
 
-.shop-article h2, .planet-article h2{
+.shop-article h2, .planet-article h2, .sith-article h2, .jedi-article h2{
   font-size: 18px;
   text-align: center;
   font-family: starJedi;
 }
 
-.shop-article, .planet-article{
+.shop-article, .planet-article, .sith-article, .jedi-article{
   padding-top: 4%;
   padding-left: 5%;
   padding-right: 5%;
   color: white;
 }
-.shop-article p, .planet-article p{
+.shop-article p, .planet-article p, .artical-main p, .sith-article p, .jedi-article p{
   font-family: serifgothiclight;
   background-color: black;
   padding-left: 2%;
@@ -219,10 +219,10 @@ h1{
     }
 }
 
-#shop-image, #planet-image{
+#shop-image, #planet-image, #sith-image, #jedi-image{
   margin: 0 auto;
   text-align: center;
-  max-width: 80%;
+  max-width: 80%;  
   height: auto;
   display: block;
 }
