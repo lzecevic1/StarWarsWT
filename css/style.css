@@ -8,9 +8,10 @@
 } 
 
  @font-face { 
-    font-family: starWars; 
-    src: url('../fonts/stjedi.ttf')
+    font-family: serifgothiclight; 
+    src: url('../fonts/serifgothiclight.otf');
 } 
+
 
 /*grid view*/
   .col-1 {width: 25%;}
@@ -62,7 +63,7 @@ body{
   }
 }
 
-#meni li :hover, .index-main a:hover{
+#meni li :hover, .artical-main h1:hover{
   text-decoration: underline;
   color: white;  
 }
@@ -163,15 +164,17 @@ body{
 }
 
 .artical-main{
-  display: flex;
+  padding-left: 250px;
+  z-index: 3;
   font-family: starJedi;
   color: white;
+  padding-right: 250px;
   background-image: url('../images/background-image.jpg');
   margin-top:-25px;
   padding-bottom: 30px;
 }
 
-#tatooine{
+#index-image{
   text-align: center;
   max-width: 80%;
   height: auto;
@@ -180,28 +183,30 @@ body{
 }
 
 @media (max-width:767px){
-#tatooine { max-width:200px; }
+#index-image { max-width:200px; }
 }
 
 h1{
   font-size: 25px;
-  margin-left: -50px;
+  /*margin-left: -50px;*/
   padding-top: 20px;
 }
 
-h2{
+.shop-article h2, .planet-article h2{
   font-size: 18px;
   text-align: center;
+  font-family: starJedi;
 }
 
-.shop-article{
+.shop-article, .planet-article{
   padding-top: 4%;
   padding-left: 5%;
   padding-right: 5%;
-  font-family: starJedi;
   color: white;
 }
-.shop-article p{
+.shop-article p, .planet-article p{
+  font-family: serifgothiclight;
+  background-color: black;
   padding-left: 2%;
   padding-right: 2%;
   text-align: center;
@@ -214,7 +219,7 @@ h2{
     }
 }
 
-#shop-image{
+#shop-image, #planet-image{
   margin: 0 auto;
   text-align: center;
   max-width: 80%;
