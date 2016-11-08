@@ -2,10 +2,34 @@
 Web Stranica za Predmet Web Tehnologije.
 
 
-Stranica s detaljima o planetama i stanovnicima, vrstama klonova, brodova. Clanci o Jedi-ima i Sith-ovima. Te online shop gdje se mogu kupiti suveniri i star wars svakodnevni dodaci (privjesak za kljuceve, case za mobitel itd.).
+Stranica s detaljima o planetama, clanci o Jedi-ima i Sith-ovima, kao i online shop gdje se mogu kupiti Star Wars privjesci za kljuceve, case-ovi za mobitel i sl.
 
+I - Sta je uradjeno?
+-3 forme: Contact, Log in, Sign up
+-4 podstranice: Siths, Jedis, Planets, Home
+-Meni koji vidljiv na svim podstranicama
+-Koristen grid view i media queries
 
-Bugovi:
+II - Sta nije uradjeno?
+-About us stranica
+-Odgovarajuci tekstovi (koristen je Lorem ipsum)
+-Grid view na pocetnoj stranici
+
+III i IV - Bugovi:
 
 - meni nije skalabilan, linkovi idu jedni ispod drugih kada se prozor smanjuje (kad se smanji ispod 920 px)
-	Rješenje: Kada se smanji ispod 920 px, napraviti neku ikonicu, koja ce prikazivati meni kada se klikne na nju.
+	Rjesenje: Kada se smanji ispod 920 px, napraviti neku ikonicu, koja ce prikazivati meni kada se klikne na nju.
+
+- na stranicama siths.html, jedis.html, planets.html, kada se resize-a, treca slika predje na desnu stranu, umjesto na lijevu (sto je dobro uradjeno na shop.html)
+
+V - Lista file-ova
+
+-index.html - pocetna stranica
+-planets.html - info o planetama (slika + tekst) 
+-siths.html - info o Siths  (slika + tekst) 
+-jedis.html - info o Jedis  (slika + tekst) 
+-login.html - login stranica 
+-shop.html - podstranica sa stvarima koje se mogu kupiti iz shopa
+-register.html - registracija novih korisnika
+-contact.html - kontakt forma
+-style.css - CSS file
