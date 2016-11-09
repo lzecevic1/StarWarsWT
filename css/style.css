@@ -63,7 +63,7 @@ body{
   color: white;
 }
 
-.forma-login, .forma-register{
+.forma-login, .forma-register {
   flex: 1;
   position: absolute;
   top: 8%;
@@ -71,8 +71,8 @@ body{
   left: 0;
   right: 0;
   margin: auto;
-  background-size: 100% 100%;
-  background-image: url('../images/backgroud-vader.png');
+  background-size: 100% 110%;
+  background-image: url('../images/background-vader.png');
   background-repeat: no-repeat;
 }
 
@@ -171,11 +171,27 @@ body{
 #index-image { max-width:200px; }
 }
 
-h1{
+.artical-main h1{
   font-size: 25px;
   /*margin-left: -50px;*/
   padding-top: 20px;
 }
+
+.about-us h1{
+  text-align: center;
+  font-family: starJedi;
+}
+
+/*#about-image {
+  max-width: 30%;
+  margin-left: 35%;
+}*/
+
+.about-us .col-2 img{
+  max-width: 98%;
+  padding-right: 2%;
+}
+
 
 .shop-article h2, .planet-article h2, .sith-article h2, .jedi-article h2{
   font-size: 18px;
@@ -190,7 +206,14 @@ h1{
   color: white;
 }
 
-.shop-article p, .planet-article p, .artical-main p, .sith-article p, .jedi-article p{
+.about-us{
+    color: white;
+    padding-top: 3%;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.shop-article p, .planet-article p, .artical-main p, .sith-article p, .jedi-article p, .about-us p{
   font-family: serifgothiclight;
   background-color: black;
   padding-left: 2%;
@@ -198,12 +221,12 @@ h1{
   text-align: center;
 }
 
-@media only screen and (max-width: 1000px) {
+/*@media only screen and (max-width: 1000px) {
     .shop-article {
       padding-left: 20px;
       width: 100%;
     }
-}
+}*/
 
 #shop-image, #planet-image, #sith-image, #jedi-image{
   margin: 0 auto;
