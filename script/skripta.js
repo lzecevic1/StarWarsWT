@@ -129,3 +129,20 @@ function validacijaRegistracija()
     return true;
 }
 
+var meniClicked = false; 
+
+function showMenu()
+{
+    if(!meniClicked) 
+    {
+        document.getElementById("dropdownMeni").style.display = "block";
+        meniClicked = true;
+    }    
+    else hideMenu();
+}
+
+function hideMenu()
+{
+    document.getElementById("dropdownMeni").style.display = "none";
+    meniClicked = false;
+}

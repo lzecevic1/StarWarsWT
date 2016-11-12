@@ -40,6 +40,37 @@ body{
   display: inline-block;
 }
 
+#menicon{
+  padding-top: 1%;
+  padding-left: 1%;
+}
+
+
+#dropdownMeni{
+    display: none;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding-left: 1%;
+    margin-top: -0.5px;
+}
+
+#dropdownMeni li{
+    color: white;
+    font-family: serifgothiclight;
+    font-size: 15px;
+    padding-bottom: 5px;
+}
+
+#dropdownMeni li :active, :link, :visited{
+  color: white;
+}
+#dropdownMeni li :hover
+{
+  color: grey;
+  font-family: serifgothiclight;
+  font-size: 15px;
+}
+
+
 @media only screen and (min-width: 920px){
 #meni li{
     display: inline-block;
