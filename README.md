@@ -9,10 +9,11 @@ I - Sta je uradjeno?
 - 5 podstranica: Siths, Jedi, Planets, Home, About us
 - Meni koji vidljiv na svim podstranicama
 - Koristen grid view i media queries
+- Validacija svih formi
+- Dropdown meni na index.html
 
 II - Sta nije uradjeno?
--Odgovarajuci tekstovi (koristen je Lorem ipsum)
--Grid view na pocetnoj stranici
+- Odgovarajuci tekstovi (koristen je Lorem ipsum)
 
 III i IV - Bugovi:
 
