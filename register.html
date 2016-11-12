@@ -21,25 +21,27 @@
             </ul>
         </div>
             <div class="forma-register">
-                <form name="register" action="index_submit" method="get" accept-charset="utf-8">
+                <form id="register_form" method="POST" enctype="multipart/form-data" accept-charset="utf-8"
+                      onsubmit="return validacijaRegistracija()">
                     <ul>
                         <li> 
-                            <input type="text" name="name" placeholder="Name" required>
+                            <input id="nameRegister" type="text" placeholder="Name">
                         </li>
                         <li> 
-                            <input type="text" name="surname" placeholder="Last name" required>
+                            <input id="surname" type="text" placeholder="Last name">
                         </li>
                         <li> 
-                            <input type="email" name="usermail" placeholder="Email" required>
+                            <input id="emailRegister" type="email" placeholder="Email">
                         </li>
                         <li >
-                            <input type="password" name="password" placeholder="Password" required>
+                            <input id="password1" type="password" placeholder="Password">
                         </li>
                         <li >
-                            <input type="password" name="password" placeholder="Repeat password" required>
+                            <input id="password2" type="password" placeholder="Repeat password">
                         </li>
+                        <p id="warningMessage"> </p>
                         <li id="submit-button-li">
-                            <input id="submit-button" type="submit" value="Sign up">
+                            <input id="submit-button" type="submit" value="Sign up" />
                         </li>
                     </ul>
                 </form>
