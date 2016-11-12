@@ -21,17 +21,19 @@
             </ul>
         </div>
         <div class="forma-contact">
-            <form id="contact_form" action="#" method="POST" enctype="multipart/form-data">
+            <form id="contact_form" action="#" method="POST" enctype="multipart/form-data" 
+                                    onsubmit="return validacijaKontakt()">
                 <ul>
                     <li> 
-                        <input id="name" placeholder="Name" class="input" name="name" type="text" value="" size="30" />
+                        <input id="nameContact" placeholder="Name"name="name" type="text" value="" size="30" />
                     </li>
                      <li> 
-                        <input id="email" placeholder="Email" class="input" name="email" type="text" /><br />
+                        <input id="emailContact" placeholder="Email" name="email" type="email" /><br />
                     </li>
                     <li id="textarea"> 
-                        <textarea id="message" placeholder="Your message" class="input" name="message"></textarea><br />
+                        <textarea id="message" placeholder="Your message" name="message"></textarea><br />
                     </li>
+                    <p id="warningMessage"> </p>
                     <li>
                         <input id="submit-button" type="submit" value="Send Email" />
                     </li>
