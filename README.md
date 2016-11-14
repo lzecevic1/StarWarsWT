@@ -11,6 +11,7 @@ I - Sta je uradjeno?
 - Koristen grid view i media queries
 - Validacija svih formi
 - Dropdown meni na index.html
+- Na shop.html je napravljena galerija. Kad se klikne na bilo koju od slika, ona se zumira, a kada se pritisne esc, vrati se na pogled na galeriju.
 
 II - Sta nije uradjeno?
 - Odgovarajuci tekstovi (koristen je Lorem ipsum)
