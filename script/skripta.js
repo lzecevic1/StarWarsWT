@@ -146,3 +146,28 @@ function hideMenu()
     document.getElementById("dropdownMeni").style.display = "none";
     meniClicked = false;
 }
+
+function zoomImage()
+{
+    // var trigger = event.target;
+    var image = document.getElementById(event.target.id);
+    var parent = image.parentElement;
+
+    for(var i = 0; i < parent.children.length; i++)
+    {
+        if(parent.children[i].id === "shop-image") continue;
+        parent.children[i].style.visibility = "hidden";
+    }
+
+
+    parent.style.position = "absolute";
+    parent.style.paddingTop = "0";
+
+    parent.style.backgroundColor = "black";
+    // parent.style.background.opacity = "0.8";
+    image.style.zIndex = "1";
+    image.style.width="100%";
+    image.style.height="100%";
+
+
+}
