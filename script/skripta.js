@@ -158,8 +158,6 @@ function zoomImage()
         if(parent.children[i].id === "shop-image") continue;
         parent.children[i].style.visibility = "hidden";
     }
-
-
     parent.style.position = "absolute";
     parent.style.paddingTop = "0";
 
@@ -172,6 +170,22 @@ function zoomImage()
     image.onmouseover = function()
     {
         this.style.opacity = "1";
+    }
+
+    window.document.onkeydown = function (e)
+    {
+        parent.style.position = "static";
+        parent.style.paddingTop ="5%";
+        parent.style.backgroundColor = "transparent";
+        image.style.maxWidth = "80%";
+        image.style.height= "auto";
+
+        
+        for(var i = 0; i < parent.children.length; i++)
+        {
+            if(parent.children[i].id === "shop-image") continue;
+            parent.children[i].style.visibility = "visible";
+        }
     }
 
 }
