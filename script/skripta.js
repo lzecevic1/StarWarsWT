@@ -164,10 +164,14 @@ function zoomImage()
     parent.style.paddingTop = "0";
 
     parent.style.backgroundColor = "black";
-    // parent.style.background.opacity = "0.8";
     image.style.zIndex = "1";
     image.style.width="100%";
     image.style.height="100%";
 
+    // Ova funkcija onemogucava opacity, koji je u css-u podesen na 0.8 za hover
+    image.onmouseover = function()
+    {
+        this.style.opacity = "1";
+    }
 
 }
