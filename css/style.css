@@ -41,23 +41,9 @@ body{
 }
 
 #menicon{
-  padding-top: 1%;
-  padding-left: 1%;
-}
-
-
-#dropdownMeni{
-    display: none;
-    background-color: rgba(0, 0, 0, 0.7);
-    padding-left: 1%;
-    margin-top: -0.5px;
-}
-
-#dropdownMeni li{
-    color: white;
-    font-family: serifgothiclight;
-    font-size: 15px;
-    padding-bottom: 5px;
+  visibility: hidden;
+  /*padding-top: 1%;
+  padding-left: 1%;*/
 }
 
 #dropdownMeni li :active, :link, :visited{
@@ -70,14 +56,12 @@ body{
   font-size: 15px;
 }
 
-
-@media only screen and (min-width: 920px){
 #meni li{
     display: inline-block;
     padding-right: 10px;
     font-family: starJedi;
+    height: 60px;
   }
-}
 
 #meni li :hover, .artical-main h1:hover{
   text-decoration: underline;
@@ -172,6 +156,7 @@ body{
 #home-link{
   font-size: 20px;
   padding-right: 15px;
+  margin-left: -70px;
 }
 
 .artical-main{
@@ -299,13 +284,12 @@ body{
 }
 
 
-
   /*kada je velicina ekrana 600px i manje, postoji samo jedna kolona*/
 @media only screen and (min-width: 300px) and (max-width: 600px) {
   [class*="col-"]{ width:90%; float:left; }
 }
 
-@media only screen and (min-width:601px) and (max-width: 1000px) {
+@media only screen and (min-width:800px) and (max-width: 1000px) {
   .col-1 {width: 45%;}
   .col-2 {width: 50%;}
   .col-3 {width: 70%;}
@@ -313,8 +297,40 @@ body{
   .col-5 {width: 100%;}
 
   [class*="col-"] { float: left; }
+  .header-standard{
+    visibility: hidden;
+  }
+
+  #menicon{
+    visibility: visible;
+  }
+  #meni{
+    visibility: hidden;
+  }
+
 }
 
+@media only screen and (min-width:601px) and (max-width: 878px) {
+  .col-1 {width: 45%;}
+  .col-2 {width: 50%;}
+  .col-3 {width: 70%;}
+  .col-4 {width: 100%;}
+  .col-5 {width: 100%;}
 
+  [class*="col-"] { float: left; }
+  .header-standard{
+    visibility: hidden;
+  }
+
+  #menicon{
+    visibility: visible;
+  }
+  #meni{
+    visibility: hidden;
+  }
+  .col-2{
+    margin-top: -50px;
+  }
+}
 
 
