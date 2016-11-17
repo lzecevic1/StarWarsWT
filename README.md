@@ -1,5 +1,5 @@
 # StarWarsWT
-Web Stranica za Predmet Web tehnologije.
+Web Stranica za predmet Web tehnologije.
 
 
 Stranica s detaljima o planetama, clanci o Jedi-ima i Sith-ovima, kao i online shop gdje se mogu kupiti Star Wars privjesci za kljuceve, case-ovi za mobitel i sl.
@@ -10,16 +10,14 @@ I - Sta je uradjeno?
 - Meni koji vidljiv na svim podstranicama
 - Koristen grid view i media queries
 - Validacija svih formi
-- Dropdown meni na index.html
+- Dropdown meni na svims postranicama
 - Na shop.html je napravljena galerija. Kad se klikne na bilo koju od slika, ona se zumira, a kada se pritisne esc, vrati se na pogled na galeriju.
+- Sa index.html podstranice se učitavaju bez reload-a cijele stranice, nego se samo sadržaj stranice mijenja
 
 II - Sta nije uradjeno?
 - Odgovarajuci tekstovi (koristen je Lorem ipsum)
 
 III i IV - Bugovi:
-
-- meni nije skalabilan, linkovi idu jedni ispod drugih kada se prozor smanjuje (kad se smanji ispod 920 px)
-	Rjesenje: Kada se smanji ispod 920 px, napraviti neku ikonicu, koja ce prikazivati meni kada se klikne na nju.
 
 - na stranicama siths.html, jedi.html, planets.html, kada se resize-a, treca slika predje na desnu stranu, umjesto na lijevu (sto je dobro uradjeno na shop.html)
 (nakon sto sam promijenila sliku jedne od planeta, na planets.html, slika je presla na lijevu stranu, tako da je bug vjerovatno zbog velicine slike)
@@ -36,3 +34,4 @@ V - Lista file-ova
 - register.html - registracija novih korisnika
 - contact.html - kontakt forma
 - style.css - CSS file
+- skripta.js - JavaScript file

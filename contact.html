@@ -6,8 +6,9 @@
         <title>Login</title>
         <link rel="stylesheet" href="css/style.css">
     </head>
-     <body>
+     <body class="forme">
         <div class="header-standard">
+        <img id="menicon" src="./images/menu-icon.png" data-toggle="dropdown" onclick="showMenu()">
             <ul id="meni">
                 <li><a id="home-link" href="index.html">Star Wars Details</a></li>                
                 <li><a href="planets.html">Planets</a></li>
@@ -28,7 +29,7 @@
                         <input id="nameContact" placeholder="Name" name="name" />
                     </li>
                      <li> 
-                        <input id="emailContact" placeholder="Email" name="email" type="email" /><br />
+                        <input id="emailContact" placeholder="Email" name="email" type="text" /><br />
                     </li>
                     <li id="textarea"> 
                         <textarea id="message" placeholder="Your message" name="message"></textarea><br />

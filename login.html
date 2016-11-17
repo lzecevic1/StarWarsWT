@@ -3,11 +3,13 @@
     <head>
         <meta charset="UTF-8">
          <meta name="viewport" content="width=device-width, initial-scale=1">
+         <META http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>Login</title>
         <link rel="stylesheet" href="css/style.css">
     </head>
-     <body>
+     <body class="forme">
         <div class="header-standard">
+        <img id="menicon" src="./images/menu-icon.png" data-toggle="dropdown" onclick="showMenu()">
             <ul id="meni">
                 <li><a id="home-link" href="index.html">Star Wars Details</a></li>                
                 <li><a href="planets.html">Planets</a></li>
@@ -21,11 +23,11 @@
             </ul>
         </div>
             <div class="forma-login">
-                <form name="login" method="POST" enctype="multipart/form-data" accept-charset="utf-8"
+                <form id = "formaLogin" name="login" method="POST" enctype="multipart/form-data" accept-charset="utf-8"
                        onsubmit="return validacijaLogin()">
                     <ul>
                         <li> 
-                            <input id="emailLogin" type="email" name="usermail" placeholder="Email">
+                            <input id="emailLogin" type="text" name="usermail" placeholder="Email">
                         </li>
                         <li >
                             <input id="passwordLogin" type="password" name="password" placeholder="Password">

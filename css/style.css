@@ -12,13 +12,21 @@
     src: url('../fonts/serifgothiclight.otf');
 } 
 
-body{
+
+.page{
 	margin: 0 auto;
   padding: 0 auto;
 	min-width: 500px;
   width: 100%;
   background-image: url('../images/background-image.jpg');
   background-repeat: repeat repeat;
+}
+
+.forme{
+  background-color: black;
+  padding: 0 auto;
+	margin: 0 auto;
+  min-height: 580px;
 }
 
 .col-1 {width: 25%;}
@@ -35,7 +43,8 @@ body{
   top: 0px;
   background-color: black;
   width: 100%;
-  height: 60px;
+  /*height: 60px;*/
+  height: 0;
   text-align: left;
   display: inline-block;
 }
@@ -43,22 +52,9 @@ body{
 #menicon{
   padding-top: 1%;
   padding-left: 1%;
+  display: none;
 }
 
-
-#dropdownMeni{
-    display: none;
-    background-color: rgba(0, 0, 0, 0.7);
-    padding-left: 1%;
-    margin-top: -0.5px;
-}
-
-#dropdownMeni li{
-    color: white;
-    font-family: serifgothiclight;
-    font-size: 15px;
-    padding-bottom: 5px;
-}
 
 #dropdownMeni li :active, :link, :visited{
   color: white;
@@ -79,6 +75,10 @@ body{
   }
 }
 
+#meni{
+  position: relative;
+}
+
 #meni li :hover, .artical-main h1:hover{
   text-decoration: underline;
   color: white;  
@@ -97,7 +97,7 @@ body{
 .forma-login, .forma-register {
   flex: 1;
   position: absolute;
-  top: 8%;
+  top: 10%;
   bottom: 0;   
   left: 0;
   right: 0;
@@ -110,7 +110,7 @@ body{
 .forma-contact{
   flex: 1;
   position: absolute;
-  top: 8%;
+  top: 10%;
   bottom: 0;   
   left: 0;
   right: 0;
@@ -208,6 +208,10 @@ body{
   font-family: starJedi;
 }
 
+.col-2{
+  padding-top: 1%;
+}
+
 /*#about-image {
   max-width: 30%;
   margin-left: 35%;
@@ -217,7 +221,6 @@ body{
   max-width: 98%;
   padding-right: 2%;
 }
-
 
 .shop-article h2, .planet-article h2, .sith-article h2, .jedi-article h2{
   font-size: 18px;
@@ -254,19 +257,27 @@ body{
     }
 }*/
 
-#shop-image, #planet-image, #sith-image, #jedi-image{
+#planet-image, #sith-image, #jedi-image{
   margin: 0 auto;
   text-align: center;
   max-width: 80%;
   height: auto;
   display: block;
 }
-#shop-image{
+
+.shop-image{
+  margin: 0 auto;
+  text-align: center;
+  max-width: 80%;
+  height: auto;
+  display: block;
+}
+.shop-image{
   border-width: 5px;
   border-style: outset;
   border-color: #808080;
 }
-#shop-image:hover{
+.shop-image:hover{
     opacity: 0.7;
 }
 
@@ -300,10 +311,7 @@ body{
 
 
 
-  /*kada je velicina ekrana 600px i manje, postoji samo jedna kolona*/
-@media only screen and (min-width: 300px) and (max-width: 600px) {
-  [class*="col-"]{ width:90%; float:left; }
-}
+
 
 @media only screen and (min-width:601px) and (max-width: 1000px) {
   .col-1 {width: 45%;}
@@ -313,4 +321,54 @@ body{
   .col-5 {width: 100%;}
 
   [class*="col-"] { float: left; }
+
+  #menicon{
+    display: block;
+    z-index: 9999;
+  }
+
+  #meni{
+    display: none;
+    width: 100%;
+    font-family: serifgothiclight;
+    background: rgba(0,0,0,0.4);
+  }
+  #meni li{
+    list-style-type: none;
+    color: white;
+    font-size :20px; 
+  }
+
+  #meni li :hover{
+    color: grey;
+    text-decoration: none;
+  }
+}
+
+  /*kada je velicina ekrana 600px i manje, postoji samo jedna kolona*/
+@media only screen and (min-width: 300px) and (max-width: 600px) {
+
+  [class*="col-"]{ width:90%; float:left; }
+  
+  #menicon{
+    display: block;
+    z-index: 9999;
+  }
+
+  #meni{
+    display: none;
+    width: 100%;
+    font-family: serifgothiclight;
+    background: rgba(0,0,0,0.4);
+  }
+  #meni li{
+    list-style-type: none;
+    color: white;
+    font-size :20px; 
+  }
+
+  #meni li :hover{
+    color: grey;
+    text-decoration: none;
+  }
 }
