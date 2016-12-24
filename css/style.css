@@ -94,7 +94,7 @@
   color: white;
 }
 
-.forma-login, .forma-register {
+.forma-login, .forma-register, .forma-addshop {
   flex: 1;
   position: absolute;
   top: 10%;
@@ -144,6 +144,12 @@
   padding-top: 5px;
 }
 
+/*#poslovniceTable
+{
+   border: 1px solid black;
+   text-align: center;
+   background-color: #C0C0C0;
+}*/
 #warningMessage{
     padding: 0;
     margin: 0;
@@ -372,3 +378,7 @@
     text-decoration: none;
   }
 }
+
+/*signOutButton{
+
+}*/

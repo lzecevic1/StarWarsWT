@@ -131,6 +131,17 @@ function validacijaRegistracija()
     return true;
 }
 
+function porukaLogin()
+{
+    var p = document.getElementById("warningMessage");  
+    p.style.paddingTop = p.style.paddingBottom = "1.5%";
+    p.style.marginLeft = "-50px";
+    p.style.color = "white";
+    p.innerHTML = "User doesn't exist!";
+     
+        
+}
+
 var meniClicked = false; 
 
 function showMenu()
@@ -214,4 +225,22 @@ function get(link)
     ajax.open("GET", link + ".html", true);
 	     
 	ajax.send();
+}
+
+function download()
+{
+    
+}
+
+
+function dodajPoslovnicu()
+{
+    var forma = document.getElementById("poslovniceForma");
+    var regexPhoneNumber = /^\(?(0[0-9]{2})\)?[/ ]?([0-9]{3})[- ]?([0-9]{3})$/;
+    if(!regexPhoneNumber.test(forma['nameContact'].value))
+    {
+        alert("Broj telefona nije u ispravnom formatu!");
+        return false;
+    }
+    return true;
 }
