@@ -6,7 +6,7 @@
         $x = 1;
         $v = [];
 
-        $header = array('Adresa poslovnice', 'Broj telefona');
+        $header = array('Adresa poslovnice', 'Broj telefona', 'Radno vrijeme');
 
         // Postavljanje imena kolona u .csv file
         $csvFile = fopen('poslovnice.csv', 'w');

@@ -1,2 +1,2 @@
 <?xml version="1.0"?>
-<Korisnici><Podaci><Uloga>admin</Uloga><Ime>Admin</Ime><Prezime>Admin</Prezime><Email>admin@gmail.com</Email><Password>tajna</Password></Podaci><Podaci><Uloga>user</Uloga><Ime>Lejla</Ime><Prezime>Zecevic</Prezime><Email>lejla@gmail.com</Email><Password>123</Password></Podaci></Korisnici>
+<Korisnici><Podaci><Uloga>admin</Uloga><Ime>Admin</Ime><Prezime>Adminic</Prezime><Email>admin@gmail.com</Email><Password>tajna</Password></Podaci><Podaci><Uloga>user</Uloga><Ime>Lejla</Ime><Prezime>Zecevic</Prezime><Email>lejla@gmail.com</Email><Password>123</Password></Podaci><Podaci><Uloga>user</Uloga><Ime>Young</Ime><Prezime>The Giant</Prezime><Email>ytg@hotmail.com</Email><Password>999</Password></Podaci></Korisnici>

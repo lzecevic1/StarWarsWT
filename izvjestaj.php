@@ -43,7 +43,7 @@ class PDF extends FPDF
         foreach($data as $row)
         {
             foreach($row as $col){
-                $this->Cell(45, 8, $col, 0, 0);
+                $this->Cell(41, 8, $col, 0, 0);
             }
             $this->Ln();
         }
@@ -55,7 +55,7 @@ class PDF extends FPDF
     $pdf->AliasNbPages();
     $pdf->AddPage();
     $pdf->SetFont('Times', '', 12);
-    $header = array('Adresa poslovnice', 'Broj telefona');
+    $header = array('Adresa poslovnice', 'Broj telefona', 'Radno vrijeme');
     $xml = simplexml_load_file('poslovnice.xml');
     $pdf->BasicTable($header, $xml);
     $pdf->SetX(15);

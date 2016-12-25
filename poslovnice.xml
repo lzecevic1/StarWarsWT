@@ -1,3 +1,3 @@
 <?xml version="1.0"?>
 <Poslovnice>
-<Podaci><Adresa>Adresa 1</Adresa><BrojTelefona>033222333</BrojTelefona></Podaci><Podaci><Adresa>Adresa 2</Adresa><BrojTelefona>033444555</BrojTelefona></Podaci><Podaci><Adresa>Adresa 3</Adresa><BrojTelefona>033555666</BrojTelefona></Podaci></Poslovnice>
+<Podaci><Adresa>Adresa 1</Adresa><BrojTelefona>033 222 333</BrojTelefona><RadnoVrijeme>08:00 - 19:00</RadnoVrijeme></Podaci><Podaci><Adresa>Adresa 2</Adresa><BrojTelefona>033 333 444</BrojTelefona><RadnoVrijeme> 08:00 - 19:00</RadnoVrijeme></Podaci></Poslovnice>

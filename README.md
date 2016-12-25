@@ -15,6 +15,7 @@ I - Sta je uradjeno?
 - Sa index.html podstranice se učitavaju bez reload-a cijele stranice, nego se samo sadržaj stranice mijenja
 - Sa sign up forme se podaci upisuju u users.xml; pri logiranju korisnika, na login.php provjerava se da li korisnik postoji u users.xml. Ukoliko korisnik ne postoji, ispisuje se poruka sa prikladnim sadržajem.
 - Na stranici about.php se nalazi tabela sa poslovnicama. Svaka poslovnica ima adresu i broj telefona. Podatke o poslovnici može da unese admin, koji ujedno može da obriše i edituje neku poslovnicu. Također, admin može da downloaduje csv file. Kod za download csv file-a se nalazi u downloadcsv.php. 
+- Podaci o broju telefona i radnom vremenu, koje admin unosi na stranici about.php, moraju biti u sljedećim formatima: 000 000 000 i hh:mm - hh:mm
 - Korisnik - guest može samo da vidi tabelu sa poslovnicama i da pogleda izvještaj. Kod za izvještaj nalazi se u file-u izvjestaj.php. Za ovo je korištena biblioteka fpdf.
 - Podaci za login admina - email: admin@gmail.com, password: tajna
 - Podaci za login guesta - email: lejla@gmail.com, password: 123 

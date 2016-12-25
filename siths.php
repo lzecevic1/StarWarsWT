@@ -1,3 +1,6 @@
+<?php
+  session_start();
+?> 
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,19 +11,34 @@
     </head>
 
     <body class="page">
-        <div class="header-standard">
-        <img id="menicon" src="./images/menu-icon.png" data-toggle="dropdown" onclick="showMenu()">
+    <div class="header-standard">
+      <img id="menicon" src="./images/menu-icon.png" data-toggle="dropdown" onclick="showMenu()">
+      <?php if(isset($_SESSION['user'])){
+        if($_SESSION['user'] == "admin" || $_SESSION['user'] == "guest") { ?>
+        <ul id="meni">
+          <li><a id="home-link" href="index.php">Star Wars Details</a></li>
+          <li><a href="planets.php">Planets</a></li>
+          <li><a href="jedi.php">Jedi</a></li>
+          <li><a href="siths.php">Siths</a></li>
+          <li><a href="shop.php">Shop</a></li>
+          <li><a href="about.php">About us</a></li>
+          <li><a href="contact.php">Contact</a></li>
+          <li><a href="logout.php">Log out</a></li>
+        </ul>
+        <?php } } 
+          if((!isset($_SESSION['user']) || $_SESSION['user'] == "unknown")) { ?>
             <ul id="meni">
-                <li><a id="home-link" href="index.html">Star Wars Details</a></li>                
-                <li><a href="planets.html">Planets</a></li>
-                <li><a href="jedi.html">Jedi</a></li>             
-                <li><a href="siths.html">Siths</a></li>
-                <li><a href="shop.html">Shop</a></li>
-                <li><a href="about.html">About us</a></li>
-                <li><a href="contact.html">Contact</a></li>    
-                <li><a href="login.html">Log in</a></li>  
-                <li><a href="register.html">Sign up</a></li>                                            
+              <li><a id="home-link" href="index.php">Star Wars Details</a></li>
+              <li><a href="planets.php">Planets</a></li>
+              <li><a href="jedi.php">Jedi</a></li>
+              <li><a href="siths.php">Siths</a></li>
+              <li><a href="shop.php">Shop</a></li>
+              <li><a href="about.php">About us</a></li>
+              <li><a href="contact.php">Contact</a></li>
+              <li><a href="login.php">Log in</a></li>
+              <li><a href="register.php">Sign up</a></li>
             </ul>
+        <?php } ?>
         </div>
         <div class="col-2">          
                 <div class="sith-article">

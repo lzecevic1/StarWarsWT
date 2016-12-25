@@ -39,15 +39,15 @@
      <body class="forme">
 <div class="header-standard">
         <img id="menicon" src="./images/menu-icon.png" data-toggle="dropdown" onclick="showMenu()">
-    <div class="header-standard">
+     <div class="header-standard">
       <img id="menicon" src="./images/menu-icon.png" data-toggle="dropdown" onclick="showMenu()">
       <?php if(isset($_SESSION['user'])){
         if($_SESSION['user'] == "admin" || $_SESSION['user'] == "guest") { ?>
         <ul id="meni">
           <li><a id="home-link" href="index.php">Star Wars Details</a></li>
-          <li><a href="planets.html">Planets</a></li>
-          <li><a href="jedi.html">Jedi</a></li>
-          <li><a href="siths.html">Siths</a></li>
+          <li><a href="planets.php">Planets</a></li>
+          <li><a href="jedi.php">Jedi</a></li>
+          <li><a href="siths.php">Siths</a></li>
           <li><a href="shop.php">Shop</a></li>
           <li><a href="about.php">About us</a></li>
           <li><a href="contact.php">Contact</a></li>
@@ -57,9 +57,9 @@
           if((!isset($_SESSION['user']) || $_SESSION['user'] == "unknown")) { ?>
             <ul id="meni">
               <li><a id="home-link" href="index.php">Star Wars Details</a></li>
-              <li><a href="planets.html">Planets</a></li>
-              <li><a href="jedi.html">Jedi</a></li>
-              <li><a href="siths.html">Siths</a></li>
+              <li><a href="planets.php">Planets</a></li>
+              <li><a href="jedi.php">Jedi</a></li>
+              <li><a href="siths.php">Siths</a></li>
               <li><a href="shop.php">Shop</a></li>
               <li><a href="about.php">About us</a></li>
               <li><a href="contact.php">Contact</a></li>
@@ -67,7 +67,7 @@
               <li><a href="register.php">Sign up</a></li>
             </ul>
         <?php } ?>
-    </div>
+        </div>
         <div class="forma-contact">
             <form id="contact_form" method="POST" enctype="multipart/form-data" accept-charset="utf-8"
                                     onsubmit="return validacijaKontakt()">
