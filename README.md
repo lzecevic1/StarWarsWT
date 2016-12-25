@@ -13,6 +13,11 @@ I - Sta je uradjeno?
 - Dropdown meni na svims postranicama
 - Na shop.html je napravljena galerija. Kad se klikne na bilo koju od slika, ona se zumira, a kada se pritisne esc, vrati se na pogled na galeriju.
 - Sa index.html podstranice se učitavaju bez reload-a cijele stranice, nego se samo sadržaj stranice mijenja
+- Sa sign up forme se podaci upisuju u users.xml; pri logiranju korisnika, na login.php provjerava se da li korisnik postoji u users.xml. Ukoliko korisnik ne postoji, ispisuje se poruka sa prikladnim sadržajem.
+- Na stranici about.php se nalazi tabela sa poslovnicama. Svaka poslovnica ima adresu i broj telefona. Podatke o poslovnici mož0e da unese admin, koji ujedno može da obriše i edituje neku poslovnicu. Također, admin može da downloaduje csv file. Kod za download csv file-a se nalazi u downloadcsv.php. 
+- Korisnik - guest može samo da vidi tabelu sa poslovnicama i da pogleda izvještaj. Kod za izvještaj nalazi se u file-u izvjestaj.php. Za ovo je korištena biblioteka fpdf.
+- Podaci za login admina - email: admin@gmail.com, password: tajna
+- Podaci za login guesta - email: lejla@gmail.com, password: 123 
 
 II - Sta nije uradjeno?
 - Odgovarajuci tekstovi (koristen je Lorem ipsum)
@@ -25,13 +30,13 @@ update: popravljeno i na jedi.html, bug je prisutan samo jos na siths.html
 
 V - Lista file-ova
 
-- index.html - pocetna stranica
+- index.php- pocetna stranica
 - planets.html - info o planetamau vidu clanaka (slika + tekst) 
 - siths.html - info o Siths u vidu clanaka (slika + tekst) 
 - jedi.html - info o Jedi u vidu clanaka (slika + tekst) 
-- login.html - login stranica 
-- shop.html - podstranica sa stvarima koje se mogu kupiti iz shopa
-- register.html - registracija novih korisnika
-- contact.html - kontakt forma
+- login.php - login stranica 
+- shop.php - podstranica sa stvarima koje se mogu kupiti iz shopa
+- register.php - registracija novih korisnika
+- contact.php - kontakt forma
 - style.css - CSS file
 - skripta.js - JavaScript file

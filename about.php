@@ -43,9 +43,6 @@ if(isset($_POST['dodajPoslovnicu']))
     }
     else $error = true;
 }
-
-
-
 ?>
 
   <!DOCTYPE html>
