@@ -14,7 +14,7 @@
     $podaci = $docElement->getElementsByTagName('Podaci');
     $rmv = null;
     $i = $_POST['obrisiDugme'];
-    $rmv = $podaci[$i - 1];
+    $rmv = $podaci[$i];
     if($rmv != null) $docElement->removeChild($rmv);
                   
     file_put_contents('poslovnice.xml', $xml->saveXML());
@@ -40,9 +40,15 @@
     $telefoni = $data->item($i)->getElementsByTagName('BrojTelefona');
     $vrijeme = $data->item($i)->getElementsByTagName('RadnoVrijeme');
 
-    $adrese->item(0)->childNodes->item(0)->nodeValue = $novaAdresa;
-    $telefoni->item(0)->childNodes->item(0)->nodeValue = $noviTelefon;
-    $vrijeme->item(0)->childNodes->item(0)->nodeValue = $novoVrijeme;
+    if(!preg_match("@[0-2][0-9]:[0-5][0-9] - [0-2][0-9]:[0-5][0-9]@", $novoVrijeme))
+      $error_rvrijeme = true;
+
+    if(!preg_match("@0[0-9]{2}[ ][0-9]{3}[ ][0-9]{3}@", $_POST['brojTelefona'], $noviTelefon))
+      $error_telefon = true;
+
+    $adrese->item(0)->childNodes->item(0)->nodeValue = htmlspecialchars($novaAdresa, ENT_QUOTES, "UTF-8");
+    $telefoni->item(0)->childNodes->item(0)->nodeValue = htmlspecialchars($noviTelefon, ENT_QUOTES, "UTF-8");
+    $vrijeme->item(0)->childNodes->item(0)->nodeValue = htmlspecialchars($novoVrijeme, ENT_QUOTES, "UTF-8");
 
     file_put_contents('poslovnice.xml', $xml->saveXML());
   }
