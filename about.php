@@ -1,9 +1,11 @@
 <?php
   session_start();
-  $xml = new DOMDocument();
+  $xml = new DOMDocument('1.0', 'UTF-8');
   $xml->load('poslovnice.xml');
-  $error = false;
+  $error_telefon = false;
+  $error_rvrijeme = false;
   $edit = false;
+  $i = -1;
 
   if(isset($_POST['obrisiDugme']))
   {
@@ -21,12 +23,33 @@
   if(isset($_POST['editDugme']))
   {
       $edit = true;  
+      $i = $_POST['editDugme'];
+  }
+
+  // Ako je admin vršio neke promjene i pritisnuo dugme Spasi
+  if(isset($_POST['spasi']))
+  {
+    $i = $_POST['spasi'];
+    $novaAdresa = $_POST['adresaEdit'];
+    $noviTelefon = $_POST['brojTelefonaEdit'];
+    $novoVrijeme = $_POST['radnoVrijemeEdit'];
+
+    $data = $xml->getElementsByTagName('Podaci');
+
+    $adrese = $data->item($i)->getElementsByTagName('Adresa');
+    $telefoni = $data->item($i)->getElementsByTagName('BrojTelefona');
+    $vrijeme = $data->item($i)->getElementsByTagName('RadnoVrijeme');
+
+    $adrese->item(0)->childNodes->item(0)->nodeValue = $novaAdresa;
+    $telefoni->item(0)->childNodes->item(0)->nodeValue = $noviTelefon;
+    $vrijeme->item(0)->childNodes->item(0)->nodeValue = $novoVrijeme;
+    
+    file_put_contents('poslovnice.xml', $xml->saveXML());
   }
 
 if(isset($_POST['dodajPoslovnicu']))
 {
-  // TODO: Dodati regex za radno vrijeme
-    if($_POST['adresa'] != "" && preg_match("@[0-2][0-3]:[0-5][0-9] - [0-2][0-3]:[0-5][0-9]@", $_POST['radnoVrijeme']) && preg_match("@0[0-9]{2}[ ][0-9]{3}[ ][0-9]{3}@", $_POST['brojTelefona']))
+    if($_POST['adresa'] != "" && preg_match("@[0-2][0-9]:[0-5][0-9] - [0-2][0-9]:[0-5][0-9]@", $_POST['radnoVrijeme']) && preg_match("@0[0-9]{2}[ ][0-9]{3}[ ][0-9]{3}@", $_POST['brojTelefona']))
     {
         // $_SESSION['user'] = $_POST;
         $rootTag = $xml->getElementsByTagName("Poslovnice")->item(0);
@@ -34,13 +57,13 @@ if(isset($_POST['dodajPoslovnicu']))
         $dataTag = $xml->createElement("Podaci");
         
         $adresaTag = $xml->createElement("Adresa");
-        $adresaTag->appendChild($xml->createTextNode($_REQUEST['adresa']));
-        
+        $adresaTag->appendChild($xml->createTextNode(htmlspecialchars($_POST['adresa'], ENT_QUOTES, "UTF-8")));
+
         $brojTelefonaTag  = $xml->createElement("BrojTelefona");
-        $brojTelefonaTag->appendChild($xml->createTextNode($_REQUEST['brojTelefona']));
+        $brojTelefonaTag->appendChild($xml->createTextNode(htmlspecialchars($_POST['brojTelefona'], ENT_QUOTES, "UTF-8")));
 
         $vrijemeTag = $xml->createElement("RadnoVrijeme");
-        $vrijemeTag->appendChild($xml->createTextNode($_REQUEST['radnoVrijeme']));
+        $vrijemeTag->appendChild($xml->createTextNode(htmlspecialchars($_POST['radnoVrijeme'], ENT_QUOTES, "UTF-8")));
         
         $dataTag->appendChild($adresaTag);
         $dataTag->appendChild($brojTelefonaTag);
@@ -50,7 +73,8 @@ if(isset($_POST['dodajPoslovnicu']))
         $xml->save('poslovnice.xml');
         header('Location:'.$_SERVER['PHP_SELF']);
     }
-    else $error = true;
+    else if (!preg_match("@[0-2][0-9]:[0-5][0-9] - [0-2][0-9]:[0-5][0-9]@", $_POST['radnoVrijeme'])) $error_rvrijeme = true;
+    else $error_telefon = true;
 }
 ?>
 
@@ -60,6 +84,40 @@ if(isset($_POST['dodajPoslovnicu']))
     <meta charset="UTF-8">
     <title>About</title>
     <link rel="stylesheet" href="css/style.css">
+    <script>
+            function rezultati(str) 
+            {
+                var rezultati = document.getElementById("rezultati");
+                if (str.length==0) 
+                { 
+                    rezultati.innerHTML = "";
+                    rezultati.style.border = "0px";
+                    // rezultati.style.display = "none";
+                    return;
+                }
+                if (window.XMLHttpRequest) 
+                {
+                    // code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp=new XMLHttpRequest();
+                } 
+                else 
+                {  // code for IE6, IE5
+                    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function()
+                {
+                    if (this.readyState == 4 && this.status == 200) 
+                    {
+                        rezultati.innerHTML = this.responseText;
+                        rezultati.style.position = "absolute";
+                        rezultati.style.backgroundColor = "black";
+                        rezultati.style.color = "white";
+                    }
+                }
+                xmlhttp.open("GET","search.php?q="+str,true);
+                xmlhttp.send();
+            }
+        </script>
   </head>
   <body class="page">
 
@@ -109,21 +167,35 @@ if(isset($_POST['dodajPoslovnicu']))
       <!-- PHP kod za dodavanje poslovnica iz XML file-a u tabelu -->
       <?php
         $xml = simplexml_load_file('poslovnice.xml');
-        $x = 1;
+        $x = 0;
         foreach ($xml->children() as  $value) { ?>
         <!-- Red tabele sadrži adresu, broj telefona poslovnice i dugmad za dodavanje i brisanje poslovnice -->
         <tr>
+          <!-- Ako je zatraženo editovanje, u tom redu tabele se nalaze 3 inputa, sa već zadanim vrijednostima, koje admin može mijenjati -->
+          <?php if(isset($_SESSION['user']) && $_SESSION['user'] == "admin" && ($edit == "true" && $x == $i)) { ?>
+            <form action='about.php' method='post'>
+           <td align="center"> <input type="text" name="adresaEdit" value= "<?php print $value->Adresa ?>"> </td>
+           <td align="center"> <input type="text" name="brojTelefonaEdit" value= "<?php print $value->BrojTelefona ?>"> </td>
+           <td align="center"> <input type="text" name="radnoVrijemeEdit" value= "<?php print $value->RadnoVrijeme ?>"> </td>
+           <td align="center">
+              <button type="submit" name="spasi" value="<?php echo $x;?>"> Spasi </button>
+              <button type="submit" name="odustani" value="<?php echo $x;?>"> Odustani </button>
+              </form>
+            </td>
+          <?php $x++; continue; } 
+          else {?>
           <td align="center"> <?php print $value->Adresa ?> </td>
           <td align="center"> <?php print $value->BrojTelefona ?> </td> 
           <td align="center"> <?php print $value->RadnoVrijeme ?> </td> 
-          <?php if(isset($_SESSION['user']) && $_SESSION['user'] == "admin"){?>
+          <?php } ?>
+          <?php if(isset($_SESSION['user']) && $_SESSION['user'] == "admin"){ ?>
           <td align="center"> 
             <form action='about.php' method='post'>
             <button type="submit" name="editDugme" value="<?php echo $x;?>"> Edituj </button>
             <button type="submit" name="obrisiDugme" value="<?php echo $x;?>"> Obriši </button>
+              <?php }?>
             </form>
           </td>
-          <?php } ?>
         </tr>
         <?php $x++; }  ?>
         </table>
@@ -138,9 +210,11 @@ if(isset($_POST['dodajPoslovnicu']))
             <input type='text' id="brTelefonaPoslovnice" name='brojTelefona' placeholder='Broj telefona'>
             <input type='text' id="vrijeme" name='radnoVrijeme' placeholder='Radno vrijeme'>
             <input id='dodajPoslovnicu-button' name='dodajPoslovnicu' type='submit' value='Dodaj' />
-            <?php if($error == true) { ?>
-              <p style="padding-top:1.5%; padding-bottom:0.2%; margin-left:-50px;" id="warningMessage"> Podaci o poslovnici nisu u ispravnom formatu! </p>
-        <?php }} ?>
+            <?php if($error_rvrijeme == true) { ?>
+              <p style="padding-top:1.5%; padding-bottom:0.2%; margin-left:-50px;" id="warningMessage"> Podaci o radnom vremenu nisu u ispravnom formatu! </p>
+        <?php } else if($error_telefon == true) {?>
+              <p style="padding-top:1.5%; padding-bottom:0.2%; margin-left:-50px;" id="warningMessage"> Podaci o radnom vremenu nisu u ispravnom formatu! </p>
+        <?php }}?>
           </form>
 
           <!-- Izvjestaj u PDF-u i csv file -->
@@ -154,6 +228,14 @@ if(isset($_POST['dodajPoslovnicu']))
               <input id="download-button" type="submit" value="Download csv">
             </form>
             <?php } ?>
+            </br>
+            </br>
+            </br>
+            <form style="margin-left: -20px">
+              <input style="color:black;" type="text" size="25" placeholder="Search" onkeyup="rezultati(this.value)">
+              <input type="submit" value="Pretraži">
+              <div id="rezultati"></div>
+            </form>
           </div>
       <script src="script/skripta.js" type="text/javascript"></script>
   </body>

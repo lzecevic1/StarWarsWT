@@ -138,8 +138,6 @@ function porukaLogin()
     p.style.marginLeft = "-50px";
     p.style.color = "white";
     p.innerHTML = "User doesn't exist!";
-     
-        
 }
 
 var meniClicked = false; 
@@ -227,24 +225,3 @@ function get(link)
 	ajax.send();
 }
 
-function download()
-{
-    
-}
-
-
-// function dodajPoslovnicu()
-// {
-//     var p = document.getElementById("warningMessage");   
-//     var forma = document.getElementById("poslovniceForma");
-//     var regexPhoneNumber = /^\(?(0[0-9]{2})\)?[/ ]?([0-9]{3})[- ]?([0-9]{3})$/;
-//     if(!regexPhoneNumber.test(forma['brTelefonaPoslovnice'].value)) 
-//     {
-//         p.style.paddingTop = p.style.paddingBottom = "1.5%";
-//         p.style.marginLeft = "-50px";
-//         p.style.color = "white";
-//         p.innerHTML = "Broj telefona nije u ispravnom formatu!";
-//         return false;
-//     }
-//     return true;
-// }

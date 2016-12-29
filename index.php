@@ -1,6 +1,7 @@
 <?php
     session_start();
 ?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,9 +9,10 @@
          <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Star Wars Details</title>
         <link rel="stylesheet" href="css/style.css">
+        
     </head>
     <body class="page">
-    <div class="header-standard">
+    <div class="header-standard" >
       <img id="menicon" src="./images/menu-icon.png" data-toggle="dropdown" onclick="showMenu()">
       <?php if(isset($_SESSION['user'])){
         if($_SESSION['user'] == "admin" || $_SESSION['user'] == "guest") { ?>
@@ -38,6 +40,7 @@
               <li><a href="register.php">Sign up</a></li>
             </ul>
         <?php } ?>
+
         </div>
         <div class="col-5">
             <div class="artical-main">
@@ -74,6 +77,6 @@
                 <p> Footer </p>
             </div>     
         </div>
-        <script src="script/skripta.js" type="text/javascript"></script>
+            <script src="script/skripta.js" type="text/javascript"></script>
     </body>
 </html>

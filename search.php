@@ -1,49 +1,60 @@
 <?php
-$xml = new DOMDocument();
-$xml->load("poslovnice.xml");
+  $xml = new DOMDocument();
+  $xml->load("poslovnice.xml");
 
-$data = $xml->getElementsByTagName('Podaci');
+  $data = $xml->getElementsByTagName('Podaci');
 
-//get the q parameter from URL
-$q=$_GET["q"];
+  // parametar iz URL
+  $suggestion = $_GET["q"];
 
-//lookup all links from the xml file if length of q>0
-if (strlen($q)>0) {
-  $hint = "";
-  for($i = 0; $i < ($data->length); $i++)
+  if (strlen($suggestion) > 0) // ako suggestion postoji
   {
-      $adresa = $data->item($i)->getElementsByTagName('Adresa');
-      $brojTelefona = $data->item($i)->getElementsByTagName('BrojTelefona'); 
-      $radnoVrijeme = $data->item($i)->getElementsByTagName('RadnoVrijeme');
+    $hint = "";
 
-    if ($adresa->item(0)->nodeType == 1)
+    for($i = 0; $i < $data->length; $i++) 
     {
-      //find a link matching the search text
-      if (stristr($adresa->item(0)->childNodes->item(0)->nodeValue, $q)) 
+      $adrese = $data->item($i)->getElementsByTagName('Adresa');
+      $telefoni = $data->item($i)->getElementsByTagName('BrojTelefona');
+      $vrijeme = $data->item($i)->getElementsByTagName('RadnoVrijeme');
+
+      if ($adrese->item(0)->nodeType==1) 
       {
-        if ($hint == "") 
+        if (stristr($adrese->item(0)->childNodes->item(0)->nodeValue, $suggestion)) 
         {
-          $hint="<a href='" . 
-          $brojTelefona->item(0)->childNodes->item(0)->nodeValue . 
-          $adresa->item(0)->childNodes->item(0)->nodeValue . "</a>";
-        } 
-        else 
+          if ($hint == "") 
+          {
+            $hint= $adrese->item(0)->childNodes->item(0)->nodeValue;
+          } 
+          else 
+          {
+            $hint= $hint . "<br />" .  $adrese->item(0)->childNodes->item(0)->nodeValue;
+          }
+        }
+      }
+
+      if($telefoni->item(0)->nodeType == 1)
+      {
+        if (stristr($telefoni->item(0)->childNodes->item(0)->nodeValue, $suggestion))
         {
-          $hint = $hint . "<br /><a href='" . 
-          $brojTelefona->item(0)->childNodes->item(0)->nodeValue . 
-          "' target='_blank'>" . 
-          $adresa->item(0)->childNodes->item(0)->nodeValue . "</a>";
+          if ($hint == "") 
+          {
+            $hint= $telefoni->item(0)->childNodes->item(0)->nodeValue;
+          } 
+          else 
+          {
+            $hint= $hint . "<br />" .  $telefoni->item(0)->childNodes->item(0)->nodeValue;
+          }
         }
       }
     }
   }
-}
 
-  // Set output to "no suggestion" if no hint was found
-  // or to the correct values
-  if ($hint=="") $response="no suggestion";
-  else $response=$hint;
+    if ($hint=="") {
+      $response="no suggestion";
+    } else {
+      $response=$hint;
+    }
 
-  //output the response
-  echo $response;
+    //output the response
+    echo $response;
 ?>

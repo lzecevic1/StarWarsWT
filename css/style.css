@@ -144,12 +144,6 @@
   padding-top: 5px;
 }
 
-/*#poslovniceTable
-{
-   border: 1px solid black;
-   text-align: center;
-   background-color: #C0C0C0;
-}*/
 #warningMessage{
     padding: 0;
     margin: 0;
@@ -179,6 +173,7 @@
   font-size: 20px;
   padding-right: 15px;
 }
+
 
 .artical-main{
   padding-left: 250px;
@@ -218,11 +213,6 @@
   padding-top: 1%;
 }
 
-/*#about-image {
-  max-width: 30%;
-  margin-left: 35%;
-}*/
-
 .about-us .col-2 img{
   max-width: 98%;
   padding-right: 2%;
@@ -255,13 +245,6 @@
   padding-right: 2%;
   text-align: center;
 }
-
-/*@media only screen and (max-width: 1000px) {
-    .shop-article {
-      padding-left: 20px;
-      width: 100%;
-    }
-}*/
 
 #planet-image, #sith-image, #jedi-image{
   margin: 0 auto;
@@ -315,10 +298,6 @@
   text-align: center;
 }
 
-
-
-
-
 @media only screen and (min-width:601px) and (max-width: 1000px) {
   .col-1 {width: 45%;}
   .col-2 {width: 50%;}
@@ -349,6 +328,8 @@
     color: grey;
     text-decoration: none;
   }
+
+
 }
 
   /*kada je velicina ekrana 600px i manje, postoji samo jedna kolona*/
