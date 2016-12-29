@@ -9,7 +9,7 @@
 
   if (strlen($suggestion) > 0) // ako suggestion postoji
   {
-    $hint = "";
+    $rez = "";
 
     for($i = 0; $i < $data->length; $i++) 
     {
@@ -21,13 +21,13 @@
       {
         if (stristr($adrese->item(0)->childNodes->item(0)->nodeValue, $suggestion)) 
         {
-          if ($hint == "") 
+          if ($rez == "") 
           {
-            $hint= $adrese->item(0)->childNodes->item(0)->nodeValue;
+            $rez = $adrese->item(0)->childNodes->item(0)->nodeValue;
           } 
           else 
           {
-            $hint= $hint . "<br />" .  $adrese->item(0)->childNodes->item(0)->nodeValue;
+            $rez = $rez . "<br />" .  $adrese->item(0)->childNodes->item(0)->nodeValue;
           }
         }
       }
@@ -36,25 +36,21 @@
       {
         if (stristr($telefoni->item(0)->childNodes->item(0)->nodeValue, $suggestion))
         {
-          if ($hint == "") 
+          if ($rez == "") 
           {
-            $hint= $telefoni->item(0)->childNodes->item(0)->nodeValue;
+            $rez = $telefoni->item(0)->childNodes->item(0)->nodeValue;
           } 
           else 
           {
-            $hint= $hint . "<br />" .  $telefoni->item(0)->childNodes->item(0)->nodeValue;
+            $rez = $rez . "<br />" .  $telefoni->item(0)->childNodes->item(0)->nodeValue;
           }
         }
       }
     }
   }
 
-    if ($hint=="") {
-      $response="no suggestion";
-    } else {
-      $response=$hint;
-    }
-
-    //output the response
-    echo $response;
+    if ($rez == "") $izlaz = "Nema rezultata";
+    else $izlaz = $rez;
+    
+    echo $izlaz;
 ?>

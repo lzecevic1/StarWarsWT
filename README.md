@@ -14,11 +14,13 @@ I - Sta je uradjeno?
 - Na shop.html je napravljena galerija. Kad se klikne na bilo koju od slika, ona se zumira, a kada se pritisne esc, vrati se na pogled na galeriju.
 - Sa index.html podstranice se učitavaju bez reload-a cijele stranice, nego se samo sadržaj stranice mijenja
 - Sa sign up forme se podaci upisuju u users.xml; pri logiranju korisnika, na login.php provjerava se da li korisnik postoji u users.xml. Ukoliko korisnik ne postoji, ispisuje se poruka sa prikladnim sadržajem.
-- Na stranici about.php se nalazi tabela sa poslovnicama. Svaka poslovnica ima adresu i broj telefona. Podatke o poslovnici može da unese admin, koji ujedno može da obriše i edituje neku poslovnicu. Također, admin može da downloaduje csv file. Kod za download csv file-a se nalazi u downloadcsv.php. 
+- Na stranici about.php se nalazi tabela sa poslovnicama. Svaka poslovnica ima adresu i broj telefona. Podatke o poslovnici može da unese admin, koji ujedno može da obriše i edituje neku poslovnicu. 
 - Podaci o broju telefona i radnom vremenu, koje admin unosi na stranici about.php, moraju biti u sljedećim formatima: 000 000 000 i hh:mm - hh:mm
+- Admin može da downloaduje csv file. Kod za download csv file-a se nalazi u downloadcsv.php. 
 - Korisnik - guest može samo da vidi tabelu sa poslovnicama i da pogleda izvještaj. Kod za izvještaj nalazi se u file-u izvjestaj.php. Za ovo je korištena biblioteka fpdf.
 - Podaci za login admina - email: admin@gmail.com, password: tajna
 - Podaci za login guesta - email: lejla@gmail.com, password: 123 
+- Uradjen je deployment, link: http://lzecevic1-lzecevic1.44fs.preview.openshiftapps.com/
 
 II - Sta nije uradjeno?
 - Odgovarajuci tekstovi (koristen je Lorem ipsum)

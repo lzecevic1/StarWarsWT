@@ -43,7 +43,7 @@
     $adrese->item(0)->childNodes->item(0)->nodeValue = $novaAdresa;
     $telefoni->item(0)->childNodes->item(0)->nodeValue = $noviTelefon;
     $vrijeme->item(0)->childNodes->item(0)->nodeValue = $novoVrijeme;
-    
+
     file_put_contents('poslovnice.xml', $xml->saveXML());
   }
 
@@ -88,23 +88,23 @@ if(isset($_POST['dodajPoslovnicu']))
             function rezultati(str) 
             {
                 var rezultati = document.getElementById("rezultati");
-                if (str.length==0) 
+                //Ako nije nista upisano
+                if (str.length == 0) 
                 { 
                     rezultati.innerHTML = "";
                     rezultati.style.border = "0px";
-                    // rezultati.style.display = "none";
                     return;
                 }
+
                 if (window.XMLHttpRequest) 
                 {
-                    // code for IE7+, Firefox, Chrome, Opera, Safari
-                    xmlhttp=new XMLHttpRequest();
+                    httprequest = new XMLHttpRequest();
                 } 
                 else 
-                {  // code for IE6, IE5
-                    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                    httprequest = new ActiveXObject("Microsoft.XMLHTTP");
                 }
-                xmlhttp.onreadystatechange = function()
+
+                httprequest.onreadystatechange = function()
                 {
                     if (this.readyState == 4 && this.status == 200) 
                     {
@@ -114,8 +114,8 @@ if(isset($_POST['dodajPoslovnicu']))
                         rezultati.style.color = "white";
                     }
                 }
-                xmlhttp.open("GET","search.php?q="+str,true);
-                xmlhttp.send();
+                httprequest.open("GET","search.php?q="+str,true);
+                httprequest.send();
             }
         </script>
   </head>
