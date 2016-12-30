@@ -4,6 +4,7 @@
   $xml->load('poslovnice.xml');
   $error_telefon = false;
   $error_rvrijeme = false;
+  $error_vecPostojeci = false;
   $edit = false;
   $i = -1;
 
@@ -29,33 +30,61 @@
   // Ako je admin vršio neke promjene i pritisnuo dugme Spasi
   if(isset($_POST['spasi']))
   {
-    $i = $_POST['spasi'];
-    $novaAdresa = $_POST['adresaEdit'];
-    $noviTelefon = $_POST['brojTelefonaEdit'];
-    $novoVrijeme = $_POST['radnoVrijemeEdit'];
-
     $data = $xml->getElementsByTagName('Podaci');
 
+    $i = $_POST['spasi'];
+    
     $adrese = $data->item($i)->getElementsByTagName('Adresa');
     $telefoni = $data->item($i)->getElementsByTagName('BrojTelefona');
     $vrijeme = $data->item($i)->getElementsByTagName('RadnoVrijeme');
 
+    $novaAdresa = $_POST['adresaEdit'];
+    $noviTelefon = $_POST['brojTelefonaEdit'];
+    $novoVrijeme = $_POST['radnoVrijemeEdit'];
+
+    $xmldata = simplexml_load_file('poslovnice.xml');
+    foreach($xmldata->children() as  $value)
+    {
+        if($value->Adresa == $_POST['adresaEdit'] || $value->BrojTelefona == $_POST['brojTelefonaEdit'])
+        {
+            $error_vecPostojeci = true;
+            break;
+        }
+    }
+
     if(!preg_match("@[0-2][0-9]:[0-5][0-9] - [0-2][0-9]:[0-5][0-9]@", $novoVrijeme))
       $error_rvrijeme = true;
 
-    if(!preg_match("@0[0-9]{2}[ ][0-9]{3}[ ][0-9]{3}@", $_POST['brojTelefona'], $noviTelefon))
+    if(!preg_match("@0[0-9]{2}[ ][0-9]{3}[ ][0-9]{3}@", $noviTelefon))
       $error_telefon = true;
 
-    $adrese->item(0)->childNodes->item(0)->nodeValue = htmlspecialchars($novaAdresa, ENT_QUOTES, "UTF-8");
-    $telefoni->item(0)->childNodes->item(0)->nodeValue = htmlspecialchars($noviTelefon, ENT_QUOTES, "UTF-8");
-    $vrijeme->item(0)->childNodes->item(0)->nodeValue = htmlspecialchars($novoVrijeme, ENT_QUOTES, "UTF-8");
+    if($novaAdresa != "" && 
+      preg_match("@[0-2][0-9]:[0-5][0-9] - [0-2][0-9]:[0-5][0-9]@", $novoVrijeme) && 
+      preg_match("@0[0-9][0-9] [0-9][0-9][0-9] [0-9][0-9][0-9]@", $noviTelefon) &&
+      strlen($noviTelefon) < 12 &&
+      !error_vecPostojeci)
+    {
+      $adrese->item(0)->childNodes->item(0)->nodeValue = htmlspecialchars($novaAdresa, ENT_QUOTES, "UTF-8");
+      $telefoni->item(0)->childNodes->item(0)->nodeValue = htmlspecialchars($noviTelefon, ENT_QUOTES, "UTF-8");
+      $vrijeme->item(0)->childNodes->item(0)->nodeValue = htmlspecialchars($novoVrijeme, ENT_QUOTES, "UTF-8");
 
-    file_put_contents('poslovnice.xml', $xml->saveXML());
+      file_put_contents('poslovnice.xml', $xml->saveXML());
+    }
   }
 
 if(isset($_POST['dodajPoslovnicu']))
 {
-    if($_POST['adresa'] != "" && preg_match("@[0-2][0-9]:[0-5][0-9] - [0-2][0-9]:[0-5][0-9]@", $_POST['radnoVrijeme']) && preg_match("@0[0-9]{2}[ ][0-9]{3}[ ][0-9]{3}@", $_POST['brojTelefona']))
+  // Provjera da li već postoji poslovnica sa zadanim imenom ili brojem telefona
+    $xmldata = simplexml_load_file('poslovnice.xml');
+    foreach($xmldata->children() as  $value)
+    {
+        if($value->Adresa == $_POST['adresa'] || $value->BrojTelefona == $_POST['brojTelefona']){
+            $error_vecPostojeci = true;
+            break;
+        }
+    }
+
+    if($_POST['adresa'] != "" && !$error_vecPostojeci && preg_match("@[0-2][0-9]:[0-5][0-9] - [0-2][0-9]:[0-5][0-9]@", $_POST['radnoVrijeme']) && preg_match("@0[0-9]{2}[ ][0-9]{3}[ ][0-9]{3}@", $_POST['brojTelefona']))
     {
         // $_SESSION['user'] = $_POST;
         $rootTag = $xml->getElementsByTagName("Poslovnice")->item(0);
@@ -79,8 +108,8 @@ if(isset($_POST['dodajPoslovnicu']))
         $xml->save('poslovnice.xml');
         header('Location:'.$_SERVER['PHP_SELF']);
     }
-    else if (!preg_match("@[0-2][0-9]:[0-5][0-9] - [0-2][0-9]:[0-5][0-9]@", $_POST['radnoVrijeme'])) $error_rvrijeme = true;
-    else $error_telefon = true;
+    if (!preg_match("@[0-2][0-9]:[0-5][0-9] - [0-2][0-9]:[0-5][0-9]@", $_POST['radnoVrijeme'])) $error_rvrijeme = true;
+    if(!preg_match("@0[0-9]{2}[ ][0-9]{3}[ ][0-9]{3}@", $_POST['brojTelefona'])) $error_telefon = true;
 }
 ?>
 
@@ -91,7 +120,7 @@ if(isset($_POST['dodajPoslovnicu']))
     <title>About</title>
     <link rel="stylesheet" href="css/style.css">
     <script>
-            function rezultati(str) 
+            function prikaziRezultate(str) 
             {
                 var rezultati = document.getElementById("rezultati");
                 //Ako nije nista upisano
@@ -102,14 +131,9 @@ if(isset($_POST['dodajPoslovnicu']))
                     return;
                 }
 
-                if (window.XMLHttpRequest) 
-                {
-                    httprequest = new XMLHttpRequest();
-                } 
-                else 
-                    httprequest = new ActiveXObject("Microsoft.XMLHTTP");
-                }
-
+                if (window.XMLHttpRequest) httprequest = new XMLHttpRequest();
+                else httprequest = new ActiveXObject("Microsoft.XMLHTTP");
+                
                 httprequest.onreadystatechange = function()
                 {
                     if (this.readyState == 4 && this.status == 200) 
@@ -219,14 +243,16 @@ if(isset($_POST['dodajPoslovnicu']))
             <?php if($error_rvrijeme == true) { ?>
               <p style="padding-top:1.5%; padding-bottom:0.2%; margin-left:-50px;" id="warningMessage"> Podaci o radnom vremenu nisu u ispravnom formatu! </p>
         <?php } else if($error_telefon == true) {?>
-              <p style="padding-top:1.5%; padding-bottom:0.2%; margin-left:-50px;" id="warningMessage"> Podaci o radnom vremenu nisu u ispravnom formatu! </p>
+              <p style="padding-top:1.5%; padding-bottom:0.2%; margin-left:-50px;" id="warningMessage"> Podaci o broju telefona nisu u ispravnom formatu! </p>
+        <?php } else if ($error_vecPostojeci == true) { ?>
+              <p style="padding-top:1.5%; padding-bottom:0.2%; margin-left:-50px;" id="warningMessage"> Adresa i broj telefona se ne mogu ponavljati! </p>
         <?php }}?>
           </form>
 
           <!-- Izvjestaj u PDF-u i csv file -->
           <!-- Izvjestaj u PDF-u mogu vidjeti svi, pa čak i neregistrovani korisnici, dok csv file može downloadovati samo admin-->
           <div style="padding-left:43%; padding-top:2%;">
-            <form style="display:inline-block;" id="izvjestajForma" action="izvjestaj.php">
+            <form <?php if(!isset($_SESSION['user']) || $_SESSION['user'] == "guest") { ?> style="display:inline-block; margin-left: 50px;" <?php } else { ?>  style="display:inline-block;" <?php } ?> id="izvjestajForma" action="izvjestaj.php">
               <input id="izvjestaj-button" type="submit" value="PDF izvještaj">
             </form>
             <?php if(isset($_SESSION['user']) && $_SESSION['user'] == "admin") { ?>
@@ -238,12 +264,11 @@ if(isset($_POST['dodajPoslovnicu']))
             </br>
             </br>
             <form style="margin-left: -20px">
-              <input style="color:black;" type="text" size="25" placeholder="Search" onkeyup="rezultati(this.value)">
+              <input style="color:black;" type="text" size="25" placeholder="Search" onkeyup="prikaziRezultate(this.value)">
               <input type="submit" value="Pretraži">
               <div id="rezultati"></div>
             </form>
           </div>
       <script src="script/skripta.js" type="text/javascript"></script>
   </body>
-
   </html>

@@ -10,6 +10,7 @@
   if (strlen($suggestion) > 0) // ako suggestion postoji
   {
     $rez = "";
+    $brojRezultata = 0;
 
     for($i = 0; $i < $data->length; $i++) 
     {
@@ -21,6 +22,7 @@
       {
         if (stristr($adrese->item(0)->childNodes->item(0)->nodeValue, $suggestion)) 
         {
+          $brojRezultata++;
           if ($rez == "") 
           {
             $rez = $adrese->item(0)->childNodes->item(0)->nodeValue;
@@ -36,6 +38,7 @@
       {
         if (stristr($telefoni->item(0)->childNodes->item(0)->nodeValue, $suggestion))
         {
+          $brojRezultata++;
           if ($rez == "") 
           {
             $rez = $telefoni->item(0)->childNodes->item(0)->nodeValue;
@@ -46,6 +49,9 @@
           }
         }
       }
+
+      if($brojRezultata == 10) break;
+
     }
   }
 

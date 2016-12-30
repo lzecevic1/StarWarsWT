@@ -13,16 +13,16 @@
         $ulogaTag = $xml->createElement("Uloga", "user");
 
         $imeTag = $xml->createElement("Ime");
-        $imeTag->appendChild($xml->createTextNode($_REQUEST['name']));
+        $imeTag->appendChild($xml->createTextNode(htmlspecialchars($_REQUEST['name'], ENT_QUOTES, "UTF-8")));
 
         $prezimeTag  = $xml->createElement("Prezime");
-        $prezimeTag->appendChild($xml->createTextNode($_REQUEST['surname']));
+        $prezimeTag->appendChild($xml->createTextNode(htmlspecialchars($_REQUEST['surname'], ENT_QUOTES, "UTF-8")));
 
         $emailTag = $xml->createElement("Email");
-        $emailTag->appendChild($xml->createTextNode($_REQUEST['email']));
+        $emailTag->appendChild($xml->createTextNode(htmlspecialchars($_REQUEST['email'], ENT_QUOTES, "UTF-8")));
 
         $pswTag = $xml->createElement("Password");
-        $pswTag->appendChild($xml->createTextNode($_REQUEST['password']));
+        $pswTag->appendChild($xml->createTextNode(htmlspecialchars($_REQUEST['password'], ENT_QUOTES, "UTF-8")));
             
         $dataTag->appendChild($ulogaTag);
         $dataTag->appendChild($imeTag);
@@ -32,7 +32,7 @@
 
         $rootTag->appendChild($dataTag);
         $xml->save('users.xml');
-        header('Location:'.$_SERVER['PHP_SELF']);
+        header('Location:index.php');
         $_SESSION['user'] = "guest";
         $email = $_POST['email'];
         $password = $_POST['password'];
