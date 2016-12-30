@@ -22,7 +22,7 @@ I - Sta je uradjeno?
 - Napravljena je i forma za search koju može vidjeti i admin i guest. Polja koja se pretražuju su adresa i broj telefona poslovnice. Prikazuje se do 10 rezultata.
 - Podaci za login admina - email: admin@gmail.com, password: tajna
 - Podaci za login guesta - email: lejla@gmail.com, password: 123 
-- Urađen je deployment, link: http://lzecevic1-lzecevic1.44fs.preview.openshiftapps.com/
+- Urađen je deployment, link: http://lzecevic1-wtprojekat.44fs.preview.openshiftapps.com/
 
 II - Sta nije uradjeno?
 - Odgovarajuci tekstovi (koristen je Lorem ipsum)
