@@ -14,16 +14,19 @@ I - Sta je uradjeno?
 - Na shop.html je napravljena galerija. Kad se klikne na bilo koju od slika, ona se zumira, a kada se pritisne esc, vrati se na pogled na galeriju.
 - Sa index.html podstranice se učitavaju bez reload-a cijele stranice, nego se samo sadržaj stranice mijenja
 - Sa sign up forme se podaci upisuju u users.xml; pri logiranju korisnika, na login.php provjerava se da li korisnik postoji u users.xml. Ukoliko korisnik ne postoji, ispisuje se poruka sa prikladnim sadržajem.
-- Na stranici about.php se nalazi tabela sa poslovnicama. Svaka poslovnica ima adresu i broj telefona. Podatke o poslovnici može da unese admin, koji ujedno može da obriše i edituje neku poslovnicu. 
+- Na stranici about.php se nalazi tabela sa poslovnicama. Svaka poslovnica ima adresu, broj telefonai radno vrijeme. Podatke o poslovnici može da unese admin, koji ujedno može da obriše i edituje neku poslovnicu. 
 - Podaci o broju telefona i radnom vremenu, koje admin unosi na stranici about.php, moraju biti u sljedećim formatima: 000 000 000 i hh:mm - hh:mm
 - Admin može da downloaduje csv file. Kod za download csv file-a se nalazi u downloadcsv.php. 
-- Korisnik - guest može samo da vidi tabelu sa poslovnicama i da pogleda izvještaj. Kod za izvještaj nalazi se u file-u izvjestaj.php. Za ovo je korištena biblioteka fpdf.
+- Korisnik - guest može samo da vidi tabelu sa poslovnicama i da pogleda izvještaj. 
+- Kod za izvještaj nalazi se u file-u izvjestaj.php. Za ovo je korištena biblioteka fpdf.
+- Napravljena je i forma za search koju može vidjeti i admin i guest. Polja koja se pretražuju su adresa i broj telefona poslovnice. Prikazuje se do 10 rezultata.
 - Podaci za login admina - email: admin@gmail.com, password: tajna
 - Podaci za login guesta - email: lejla@gmail.com, password: 123 
-- Uradjen je deployment, link: http://lzecevic1-lzecevic1.44fs.preview.openshiftapps.com/
+- Urađen je deployment, link: http://lzecevic1-lzecevic1.44fs.preview.openshiftapps.com/
 
 II - Sta nije uradjeno?
 - Odgovarajuci tekstovi (koristen je Lorem ipsum)
+- Funkcionalnost na dugmetu Pretraži (Spirala 3)
 
 III i IV - Bugovi:
 
@@ -34,12 +37,14 @@ update: popravljeno i na jedi.html, bug je prisutan samo jos na siths.html
 V - Lista file-ova
 
 - index.php- pocetna stranica
-- planets.html - info o planetamau vidu clanaka (slika + tekst) 
-- siths.html - info o Siths u vidu clanaka (slika + tekst) 
-- jedi.html - info o Jedi u vidu clanaka (slika + tekst) 
+- planets.php - info o planetamau vidu clanaka (slika + tekst) 
+- siths.php - info o Siths u vidu clanaka (slika + tekst) 
+- jedi.php - info o Jedi u vidu clanaka (slika + tekst) 
 - login.php - login stranica 
 - shop.php - podstranica sa stvarima koje se mogu kupiti iz shopa
 - register.php - registracija novih korisnika
 - contact.php - kontakt forma
+- downloadcsv.php - kod za downloadovanje CSV file-a
+- izvjestaj.php - kod za generisanje izvještaja
 - style.css - CSS file
 - skripta.js - JavaScript file

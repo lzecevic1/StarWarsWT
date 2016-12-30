@@ -120,11 +120,12 @@ if(isset($_POST['dodajPoslovnicu']))
     <title>About</title>
     <link rel="stylesheet" href="css/style.css">
     <script>
-            function prikaziRezultate(str) 
+            function prikaziRezultate(unos) 
             {
                 var rezultati = document.getElementById("rezultati");
+                
                 //Ako nije nista upisano
-                if (str.length == 0) 
+                if (unos.length == 0) 
                 { 
                     rezultati.innerHTML = "";
                     rezultati.style.border = "0px";
@@ -144,7 +145,8 @@ if(isset($_POST['dodajPoslovnicu']))
                         rezultati.style.color = "white";
                     }
                 }
-                httprequest.open("GET","search.php?q="+str,true);
+
+                httprequest.open("GET", "search.php?q=" + unos, true);
                 httprequest.send();
             }
         </script>
@@ -263,9 +265,10 @@ if(isset($_POST['dodajPoslovnicu']))
             </br>
             </br>
             </br>
+            <!-- Forma za search -->
             <form style="margin-left: -20px">
               <input style="color:black;" type="text" size="25" placeholder="Search" onkeyup="prikaziRezultate(this.value)">
-              <input type="submit" value="Pretraži">
+              <button> Pretraži </button>
               <div id="rezultati"></div>
             </form>
           </div>
