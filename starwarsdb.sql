@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2017 at 11:58 AM
+-- Generation Time: Jan 13, 2017 at 12:00 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `starwarsdb`
 --
-CREATE DATABASE IF NOT EXISTS `starwarsdb` DEFAULT CHARACTER SET utf8 COLLATE utf8_slovenian_ci;
-USE `starwarsdb`;
 
 -- --------------------------------------------------------
 
@@ -182,87 +180,7 @@ ALTER TABLE `poslovnica`
 ALTER TABLE `skladiste`
   ADD CONSTRAINT `skladiste_ibfk_1` FOREIGN KEY (`poslovnica`) REFERENCES `poslovnica` (`id`),
   ADD CONSTRAINT `skladiste_ibfk_2` FOREIGN KEY (`artikal`) REFERENCES `artikal` (`id`);
---
--- Database: `wt8`
---
-CREATE DATABASE IF NOT EXISTS `wt8` DEFAULT CHARACTER SET utf16 COLLATE utf16_slovenian_ci;
-USE `wt8`;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `komentar`
---
-
-CREATE TABLE `komentar` (
-  `id` int(11) NOT NULL,
-  `vijest` int(11) NOT NULL,
-  `tekst` text COLLATE utf16_slovenian_ci NOT NULL,
-  `autor` varchar(20) COLLATE utf16_slovenian_ci NOT NULL,
-  `vrijeme` timestamp NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_slovenian_ci;
-
---
--- Dumping data for table `komentar`
---
-
-INSERT INTO `komentar` (`id`, `vijest`, `tekst`, `autor`, `vrijeme`) VALUES
-(1, 1, 'Nam no quis falli legimus, mea aliquip intellegebat te, sit te posse forensibus.', 'Jane Doe', '2016-12-12 23:00:00'),
-(2, 1, 'But note that if the array has a large number of keys, this code will spend much time counting them, as compared to the other answers here.', 'Lejla', '2016-12-22 15:08:52'),
-(3, 1, 'PDOStatement::fetchColumn — Returns a single column from the next row of a result set', 'Lejla', '2016-12-22 15:09:13');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `vijest`
---
-
-CREATE TABLE `vijest` (
-  `id` int(11) NOT NULL,
-  `naslov` varchar(100) COLLATE utf16_slovenian_ci NOT NULL,
-  `tekst` text COLLATE utf16_slovenian_ci NOT NULL,
-  `autor` varchar(20) COLLATE utf16_slovenian_ci NOT NULL,
-  `vrijeme` timestamp NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_slovenian_ci;
-
---
--- Dumping data for table `vijest`
---
-
-INSERT INTO `vijest` (`id`, `naslov`, `tekst`, `autor`, `vrijeme`) VALUES
-(1, 'Vijest n0.1', 'Lorem ipsum dolor sit amet, quo phaedrum theophrastus ex, vitae postulant delicatissimi id ius.', 'Lejla', '2016-12-07 23:00:00');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `komentar`
---
-ALTER TABLE `komentar`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `vijest` (`vijest`);
-
---
--- Indexes for table `vijest`
---
-ALTER TABLE `vijest`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `komentar`
---
-ALTER TABLE `komentar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- AUTO_INCREMENT for table `vijest`
---
-ALTER TABLE `vijest`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
