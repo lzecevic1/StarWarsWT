@@ -51,9 +51,10 @@
                         </li>
                         <?php if(isset($_SESSION['user']) && $_SESSION['user'] == "unknown") { ?>
                             <p style="padding-top:1.5%; padding-bottom:1.5%; margin-left:-50px;" id="warningMessage"> Nepostojeći korisnik! Pokušajte se logovati ponovo. </p>
-                        <?php session_unset(); } else { ?>
+                        <?php session_unset(); } ?>
+                        <!--/*else { ?>
                             <p style="display:none" id="warningMessage"> Nepostojeći korisnik! Pokušajte se logovati ponovo. </p>
-                        <?php } ?>
+                       } */-->
 
                         <li id="submit-button-li">
                             <input id="submit-button" type="submit" value="Log in" name="login">

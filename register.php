@@ -1,42 +1,96 @@
   <?php
     session_start();
-    $xml = new DOMDocument();
-    $xml->load('users.xml');
-
-    if(isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) && isset($_POST['password']))
+    $error = false;
+    if(isset($_POST['register']))
     {
-        $_SESSION['user'] = $_POST;
-        $rootTag = $xml->getElementsByTagName("Korisnici")->item(0);
+        if(isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) && isset($_POST['password']))
+        {
+            $ime = $_POST['name'];
+            $prezime = $_POST['surname'];
+            $email = $_POST['email'];
+            $password = md5($_POST['password']);
 
-        $dataTag = $xml->createElement("Podaci");
-
-        $ulogaTag = $xml->createElement("Uloga", "user");
-
-        $imeTag = $xml->createElement("Ime");
-        $imeTag->appendChild($xml->createTextNode(htmlspecialchars($_REQUEST['name'], ENT_QUOTES, "UTF-8")));
-
-        $prezimeTag  = $xml->createElement("Prezime");
-        $prezimeTag->appendChild($xml->createTextNode(htmlspecialchars($_REQUEST['surname'], ENT_QUOTES, "UTF-8")));
-
-        $emailTag = $xml->createElement("Email");
-        $emailTag->appendChild($xml->createTextNode(htmlspecialchars($_REQUEST['email'], ENT_QUOTES, "UTF-8")));
-
-        $pswTag = $xml->createElement("Password");
-        $pswTag->appendChild($xml->createTextNode(htmlspecialchars($_REQUEST['password'], ENT_QUOTES, "UTF-8")));
+            $veza = new PDO("mysql:dbname=starwarsdb;host=localhost;charset=utf8", "swuser", "swpass");
             
-        $dataTag->appendChild($ulogaTag);
-        $dataTag->appendChild($imeTag);
-        $dataTag->appendChild($prezimeTag);
-        $dataTag->appendChild($emailTag);
-        $dataTag->appendChild($pswTag);
+            /* PROVJERA DA LI U BAZI VEC POSTOJI KORISNIK SA ISTIM EMAILOM */
+            $provjera = $veza->prepare("SELECT COUNT(*) FROM Osoba WHERE email=?");
+            $provjera->bindValue(1, htmlspecialchars($email, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
+            $provjera->execute();
+            $broj = $provjera->fetchColumn();
 
-        $rootTag->appendChild($dataTag);
-        $xml->save('users.xml');
-        header('Location:index.php');
-        $_SESSION['user'] = "guest";
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+            // Ako postoji korisnik, ispisat će se poruka o grešci
+            if($broj > 0) $error = true;
+
+            // Ako ne postoji, dodat će se u BP             
+            else
+            {
+                if($_SESSION['user']=="admin")
+                {
+                    $upit = $veza->prepare('INSERT INTO Osoba (id, ime, prezime, email, password, uloga) 
+                                VALUES (NULL, ?, ?, ?, ?, "sef")');
+                }
+                else
+                {
+                    $upit = $veza->prepare('INSERT INTO Osoba (id, ime, prezime, email, password, uloga) 
+                                VALUES (NULL, ?, ?, ?, ?, "user")');
+                }
+
+                $upit->bindValue(1, htmlspecialchars($ime, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
+                $upit->bindValue(2, htmlspecialchars($prezime, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR); 
+                $upit->bindValue(3, htmlspecialchars($email, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
+                $upit->bindValue(4, $password, PDO::PARAM_STR);
+                $upit->execute();
+
+                if($_SESSION['user'] != "admin")
+                {
+                    header('Location:index.php');   
+                    $_SESSION['user'] = "guest";
+                }
+                else
+                {
+                    header('Location:about.php');   
+                }
+            }
+        }
     }
+
+    // XML DIO 
+    // $xml = new DOMDocument();
+    // $xml->load('users.xml');
+    // if(isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) && isset($_POST['password']))
+    // {
+    //     $_SESSION['user'] = $_POST;
+    //     $rootTag = $xml->getElementsByTagName("Korisnici")->item(0);
+
+    //     $dataTag = $xml->createElement("Podaci");
+
+    //     $ulogaTag = $xml->createElement("Uloga", "user");
+
+    //     $imeTag = $xml->createElement("Ime");
+    //     $imeTag->appendChild($xml->createTextNode(htmlspecialchars($_REQUEST['name'], ENT_QUOTES, "UTF-8")));
+
+    //     $prezimeTag  = $xml->createElement("Prezime");
+    //     $prezimeTag->appendChild($xml->createTextNode(htmlspecialchars($_REQUEST['surname'], ENT_QUOTES, "UTF-8")));
+
+    //     $emailTag = $xml->createElement("Email");
+    //     $emailTag->appendChild($xml->createTextNode(htmlspecialchars($_REQUEST['email'], ENT_QUOTES, "UTF-8")));
+
+    //     $pswTag = $xml->createElement("Password");
+    //     $pswTag->appendChild($xml->createTextNode(htmlspecialchars($_REQUEST['password'], ENT_QUOTES, "UTF-8")));
+            
+    //     $dataTag->appendChild($ulogaTag);
+    //     $dataTag->appendChild($imeTag);
+    //     $dataTag->appendChild($prezimeTag);
+    //     $dataTag->appendChild($emailTag);
+    //     $dataTag->appendChild($pswTag);
+
+    //     $rootTag->appendChild($dataTag);
+    //     $xml->save('users.xml');
+    //     header('Location:index.php');
+    //     $_SESSION['user'] = "guest";
+    //     $email = $_POST['email'];
+    //     $password = $_POST['password'];
+    // }
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +98,9 @@
     <head>
         <meta charset="UTF-8">
          <meta name="viewport" content="width=device-width, initial-scale=1">
+        <?php if($_SESSION['user'] != "admin") {?> 
         <title>Sign Up!</title>
+        <?php } ?>
         <link rel="stylesheet" href="css/style.css">
     </head>
      <body class="forme">
@@ -95,7 +151,9 @@
                         <li >
                             <input id="password2" name="repeatpassword" type="password" placeholder="Repeat password" required>
                         </li>
-                        <p id="warningMessage"> </p>
+                         <?php if($error == true) { ?>
+                        <p style="padding-top:1.5%; padding-bottom:0.2%; margin-left:-50px;" id="warningMessage"> Postoji korisnik sa istim emailom! </p>
+                         <?php } ?>
                         <li id="submit-button-li">
                             <input id="submit-button" name="register" type="submit" value="Sign up" />
                         </li>

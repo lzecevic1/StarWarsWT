@@ -1,13 +1,4 @@
 // Funkcije za validacije formi - login, kontakt i sign up
-
-function showMessage(message, p) // Y U NO WORK??
-{
-    p.style.paddingTop = p.style.paddingBottom = "1.5%";
-    p.style.marginLeft = "-50px";
-    p.style.color = "white";
-    p.innerHTML(message);
-}
-
 function validacijaLogin()
 {
     var p = document.getElementById("warningMessage");
@@ -224,4 +215,6 @@ function get(link)
 	     
 	ajax.send();
 }
+
+
 
