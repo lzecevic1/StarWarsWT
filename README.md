@@ -25,15 +25,15 @@ I - Sta je uradjeno?
 - Urađen je deployment, link: http://lzecevic1-wtprojekat.44fs.preview.openshiftapps.com/
 
 Spirala 4:
--Kada se korisnik registruje na register stranici, vrši se provjera email-a koji je unio. Ukoliko već postoji korisnik u bazi sa istim email-om, ispisuje se poruka o grešci, u suprotnom, korisnik se dodaje u bazu i njegova uloga je 'user'.
--Kada korisnik želi da uradi login, vrši se provjera postojanja u bazi podataka. Ako korisnik ne postoji u bazi ili ako je šifra pogrešna, poruka o grešci se ispisuje.
--Pristupni podaci za admina su admin@admin.com, password: tajna
--Pristupni podaci za jednog korisnika su lejla@gmail.com, password: lejla
--Na About stranici, forma za search koja je napravljena u trećoj spirali je zakomentarisana.
--Na About stranici, admin ima mogucnost dodavanja nove poslovnice. Pošto se sada poslovnica dodaje u bazu, gdje je potrebno dodati i šefa, pored forme za dodavanje nalazi se lista osoba čija je uloga šef, a koje nisu još dodijeljene kao šef nijednoj poslovnici. Na taj način, admin može da vidi koji je id osobe koju želi dodijeliti kao šefa poslovnici i upisati ga u polje predviđeno za to.
--Ukoliko admin ne želi da kao šefa postavi već postojeću osobu, već želi da doda novog šefa u bazu, klikom na dugme "Dodaj novog šefa", usmjerava se da formu u kojoj popunjava podatke za šefa.
--Buttoni Edituj i Obriši rade editovanje i brisanje reda iz kolone, s tim što se te izmjene sada prikazuju u bazi, a ne u XML-u.
--
+- Kada se korisnik registruje na register stranici, vrši se provjera email-a koji je unio. Ukoliko već postoji korisnik u bazi sa istim email-om, ispisuje se poruka o grešci, u suprotnom, korisnik se dodaje u bazu i njegova uloga je 'user'.
+- Kada korisnik želi da uradi login, vrši se provjera postojanja u bazi podataka. Ako korisnik ne postoji u bazi ili ako je šifra pogrešna, poruka o grešci se ispisuje.
+- Pristupni podaci za admina su admin@admin.com, password: tajna
+- Pristupni podaci za jednog korisnika su lejla@gmail.com, password: lejla
+- Na About stranici, forma za search koja je napravljena u trećoj spirali je zakomentarisana.
+- Na About stranici, admin ima mogucnost dodavanja nove poslovnice. Pošto se sada poslovnica dodaje u bazu, gdje je potrebno dodati i šefa, pored forme za dodavanje nalazi se lista osoba čija je uloga šef, a koje nisu još dodijeljene kao šef nijednoj poslovnici. Na taj način, admin može da vidi koji je id osobe koju želi dodijeliti kao šefa poslovnici i upisati ga u polje predviđeno za to.
+- Ukoliko admin ne želi da kao šefa postavi već postojeću osobu, već želi da doda novog šefa u bazu, klikom na dugme "Dodaj novog šefa", usmjerava se da formu u kojoj popunjava podatke za šefa.
+- Buttoni Edituj i Obriši rade editovanje i brisanje reda iz kolone, s tim što se te izmjene sada prikazuju u bazi, a ne u XML-u.
+
 
 II - Sta nije uradjeno?
 - Odgovarajuci tekstovi (koristen je Lorem ipsum)
