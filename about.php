@@ -130,7 +130,7 @@ if(isset($_POST['dodajPoslovnicu']))
                   if (ajax.readyState == 4 && ajax.status == 200)
                   {
                       document.open();
-                      alert(ajax.responseText);
+                      alert(JSON.stringify(ajax.responseText));
                       document.close();
                   }
                     if (ajax.readyState == 4 && ajax.status == 404)

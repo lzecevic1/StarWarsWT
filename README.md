@@ -61,6 +61,7 @@ V - Lista file-ova
 - skripta.js - JavaScript file
 
 VI - Baza
+
 Baza sadrži 4 tabele: Osoba, Poslovnica, Artikal i Skladiste
 Tabela Osoba:
 -id, int i PK

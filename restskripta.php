@@ -8,8 +8,8 @@ function zag() {
 function rest_get($request, $data) 
 {
     $veza = new PDO("mysql:dbname=starwarsdb;host=localhost;charset=utf8", "swuser", "swpass");
-    $query = $veza->prepare("SELECT * FROM Poslovnica WHERE id=?"); 
-    $query->bindValue(1, htmlspecialchars($data['id'], ENT_QUOTES, "UTF-8"), PDO::PARAM_INT);
+    $query = $veza->prepare("SELECT * FROM Poslovnica WHERE id=7"); 
+    // $query->bindValue(1, htmlspecialchars($data['id'], ENT_QUOTES, "UTF-8"), PDO::PARAM_INT);
     $query->execute();
 }
 
