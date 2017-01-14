@@ -15,7 +15,7 @@
     <div class="header-standard" >
       <img id="menicon" src="./images/menu-icon.png" data-toggle="dropdown" onclick="showMenu()">
       <?php if(isset($_SESSION['user'])){
-        if($_SESSION['user'] == "admin" || $_SESSION['user'] == "guest") { ?>
+        if($_SESSION['user'] == "admin" || $_SESSION['user'] == "guest" || $_SESSION['user'] == "sef") { ?>
         <ul id="meni">
           <li><a id="home-link" href="index.php">Star Wars Details</a></li>
           <li><a href="planets.php">Planets</a></li>

@@ -130,8 +130,9 @@ if(isset($_POST['dodajPoslovnicu']))
                   if (ajax.readyState == 4 && ajax.status == 200)
                   {
                       document.open();
-                      alert(JSON.stringify(ajax.responseText));
+                      document.write("<body> <a href='about.php'>Nazad</a> <br> <p>" + ajax.responseText + "</p> </body>");
                       document.close();
+                      //  alert(JSON.stringify(ajax.responseText));
                   }
                     if (ajax.readyState == 4 && ajax.status == 404)
                     alert("error");
@@ -160,7 +161,7 @@ if(isset($_POST['dodajPoslovnicu']))
           <li><a href="logout.php">Log out</a></li>
         </ul>
         <?php } 
-        if($_SESSION['user'] == "admin"){ ?>
+        if($_SESSION['user'] == "admin" || $_SESSION['user'] == "sef"){ ?>
         <ul id="meni">
           <li><a id="home-link" href="index.php">Star Wars Details</a></li>
           <li><a href="planets.php">Planets</a></li>
@@ -187,6 +188,7 @@ if(isset($_POST['dodajPoslovnicu']))
         <?php } ?>
         </div>
 
+    
     <br>
     <br>
     <br>
@@ -233,10 +235,10 @@ if(isset($_POST['dodajPoslovnicu']))
             <button type="submit" name="editDugme" value="<?php echo $x;?>"> Edituj </button>
             <button type="submit" name="obrisiDugme" value="<?php echo $x;?>"> Obriši </button>
             <input type="hidden" name="id" value="<?php print $poslovnica['id']?>">
-              <?php }?>
             </form>
             <button onclick="getJSON( <?php print $poslovnica['id'] ?>)" style="display:inline-block;" type="submit" name="json"> JSON Objekat </button>
           </td>
+          <?php }?>
         </tr>
         <?php $x++; }  ?>
         </table>

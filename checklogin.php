@@ -20,6 +20,7 @@ session_start();
             $uloga = $array['uloga'];
             if($uloga == 'admin') $_SESSION['user'] = "admin";
             else if($uloga == 'user') $_SESSION['user'] = "guest";
+            else if ($uloga == 'sef') $_SESSION['user'] = "sef";
             header('Location: index.php');
         }
 
