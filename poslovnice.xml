@@ -1,3 +1,2 @@
 <?xml version="1.0"?>
-<Poslovnice>
-<Podaci><Adresa>Zmaja od Bosne bb</Adresa><BrojTelefona>033 222 333</BrojTelefona><RadnoVrijeme>10:00 - 21:00</RadnoVrijeme></Podaci><Podaci><Adresa>Semira Fraste 7</Adresa><BrojTelefona>033 444 555</BrojTelefona><RadnoVrijeme>10:00 - 21:00</RadnoVrijeme></Podaci></Poslovnice>
+<Poslovnice><Podaci><Adresa>Trg Grada Prato 2</Adresa><BrojTelefona>033 667 888</BrojTelefona><Sef>27</Sef></Podaci><Podaci><Adresa>Grbavicka 50</Adresa><BrojTelefona>033 225 883</BrojTelefona><Sef>28</Sef></Podaci></Poslovnice>

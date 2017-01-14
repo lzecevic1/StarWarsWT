@@ -30,12 +30,15 @@ Spirala 4:
 - Pristupni podaci za admina su admin@admin.com, password: tajna
 - Pristupni podaci za jednog korisnika su lejla@gmail.com, password: lejla
 - Na About stranici, forma za search koja je napravljena u trećoj spirali je zakomentarisana.
+- Na About stranici i dalje postoji mogućnost pregleda izvještaja. U izvještaju se sada nalazi adresa i broj telefona poslovnice, te ime i prezime njenog šefa.
 - Na About stranici, admin ima mogućnost dodavanja nove poslovnice. Pošto se sada poslovnica dodaje u bazu, gdje je potrebno dodati i šefa, pored forme za dodavanje nalazi se lista osoba čija je uloga šef, a koje nisu još dodijeljene kao šef nijednoj poslovnici. Na taj način, admin može da vidi koji je id osobe koju želi dodijeliti kao šefa poslovnici i upisati ga u polje predviđeno za to.
 - Ukoliko admin ne želi da kao šefa postavi već postojeću osobu, već želi da doda novog šefa u bazu, klikom na dugme "Dodaj novog šefa", usmjerava se na formu u kojoj popunjava podatke za šefa.
 - Buttoni Edituj i Obriši rade editovanje i brisanje reda iz tabele, s tim što se te izmjene sada prikazuju u bazi, a ne u XML-u.
 - GET metoda rest servisa je napravljena na stranici about.php. Pored svake poslovnice, nalazi se dugme JSON Objekat, a klikom na njega se ispišu podaci o poslovnici u JSON formatu. 
 - Web servis je testiran pomoću POSTMAN-a, a screenshots se nalaze na sljedećem linku: https://docs.google.com/document/d/1Hx9xLPCzBltaAtxgPcKmi2CrbvOBR6QoIi-NTy0f8Qs/edit
-- 
+- Pošto sam u trećoj spirali imala samo dva XML-a, prvi u koji sam upisivala korisnike po registraciji, a drugi u koji sam upisivala poslovnice, odradila sam prebacivanje podataka u bazu iz ta dva XML-a. 
+- Na stranici about.php, ukoliko je logovan admin, postoje dva button-a, Prebaci korisnike u bazu i Prebaci poslovnice u bazu. Klikom na bilo koje od ovih dugmadi, poziva se skripta xmltodb.php.
+- U gore navedene XML file-ove sam dodala jednu adresu i jednog korisnika koji nisu u bazi, da asistent može testirati ovu funkcionalnost prilikom pregledanja spirale :)
 
 II - Sta nije uradjeno?
 - Odgovarajuci tekstovi (koristen je Lorem ipsum)

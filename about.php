@@ -4,6 +4,7 @@
   // $xml->load('poslovnice.xml');
 
   $veza = new PDO("mysql:dbname=starwarsdb;host=localhost;charset=utf8", "swuser", "swpass");
+
   $error_telefon = false;
   $error_vecPostojeci = false;
   $edit = false;
@@ -20,7 +21,7 @@
 
   if(isset($_POST['editDugme']))
   {
-      $edit = true;  
+      $edit = true;
       $i = $_POST['editDugme'];
   }
 
@@ -67,12 +68,12 @@ if(isset($_POST['dodajPoslovnicu']))
           $provjera->bindValue(1, (htmlspecialchars($adresa, ENT_QUOTES, "UTF-8")), PDO::PARAM_STR);
           $provjera->execute();
           $broj = $provjera->fetchColumn();
-          
+
           if($broj > 0) $error_vecPostojeci = true;
-         
+
           else
           {
-              $upit = $veza->prepare('INSERT INTO Poslovnica (id, adresa, telefon, sef) 
+              $upit = $veza->prepare('INSERT INTO Poslovnica (id, adresa, telefon, sef)
                 VALUES (NULL, ?, ?, ?)');
 
               $upit->bindValue(1, (htmlspecialchars($adresa, ENT_QUOTES, "UTF-8")), PDO::PARAM_STR);
@@ -81,7 +82,7 @@ if(isset($_POST['dodajPoslovnicu']))
               $upit->execute();
               header('Location:'.$_SERVER['PHP_SELF']);
           }
-     }        
+     }
   }
 ?>
 
@@ -92,13 +93,13 @@ if(isset($_POST['dodajPoslovnicu']))
     <title>About</title>
     <link rel="stylesheet" href="css/style.css">
     <script>
-            function prikaziRezultate(unos) 
+            function prikaziRezultate(unos)
             {
                 var rezultati = document.getElementById("rezultati");
-                
+
                 //Ako nije nista upisano
-                if (unos.length == 0) 
-                { 
+                if (unos.length == 0)
+                {
                     rezultati.innerHTML = "";
                     rezultati.style.border = "0px";
                     return;
@@ -106,10 +107,10 @@ if(isset($_POST['dodajPoslovnicu']))
 
                 if (window.XMLHttpRequest) httprequest = new XMLHttpRequest();
                 else httprequest = new ActiveXObject("Microsoft.XMLHTTP");
-                
+
                 httprequest.onreadystatechange = function()
                 {
-                    if (this.readyState == 4 && this.status == 200) 
+                    if (this.readyState == 4 && this.status == 200)
                     {
                         rezultati.innerHTML = this.responseText;
                         rezultati.style.position = "absolute";
@@ -124,8 +125,8 @@ if(isset($_POST['dodajPoslovnicu']))
 
             function getJSON(id)
             {
-                var ajax = new XMLHttpRequest();	
-                ajax.onreadystatechange = function () 
+                var ajax = new XMLHttpRequest();
+                ajax.onreadystatechange = function ()
                 {
                   if (ajax.readyState == 4 && ajax.status == 200)
                   {
@@ -136,7 +137,7 @@ if(isset($_POST['dodajPoslovnicu']))
                   }
                     if (ajax.readyState == 4 && ajax.status == 404)
                     alert("error");
-                      
+
                 }
                 ajax.open("GET", "restskripta.php?id=" + id, true);
                 ajax.send();
@@ -160,7 +161,7 @@ if(isset($_POST['dodajPoslovnicu']))
           <li><a href="contact.php">Contact</a></li>
           <li><a href="logout.php">Log out</a></li>
         </ul>
-        <?php } 
+        <?php }
         if($_SESSION['user'] == "admin" || $_SESSION['user'] == "sef"){ ?>
         <ul id="meni">
           <li><a id="home-link" href="index.php">Star Wars Details</a></li>
@@ -171,8 +172,8 @@ if(isset($_POST['dodajPoslovnicu']))
           <li><a href="about.php">About us</a></li>
           <li><a href="logout.php">Log out</a></li>
         </ul>
-        <?php }     
-        } 
+        <?php }
+        }
         // Neregistrovan posjetilac stranice ne može posjetiti shop
           if((!isset($_SESSION['user']) || $_SESSION['user'] == "unknown")) { ?>
             <ul id="meni">
@@ -188,7 +189,7 @@ if(isset($_POST['dodajPoslovnicu']))
         <?php } ?>
         </div>
 
-    
+
     <br>
     <br>
     <br>
@@ -223,14 +224,14 @@ if(isset($_POST['dodajPoslovnicu']))
               <input type="hidden" name="id" value="<?php print $poslovnica['id'] ?>">
               </form>
             </td>
-          <?php $x++; continue; } 
+          <?php $x++; continue; }
 
           else {?>
           <td align="center"> <?php print $poslovnica['adresa'] ?> </td>
-          <td align="center"> <?php print $poslovnica['telefon'] ?> </td> 
+          <td align="center"> <?php print $poslovnica['telefon'] ?> </td>
           <?php } ?>
           <?php if(isset($_SESSION['user']) && $_SESSION['user'] == "admin"){ ?>
-          <td align="center"> 
+          <td align="center">
             <form style="display:inline-block;" action='about.php' method='post'>
             <button type="submit" name="editDugme" value="<?php echo $x;?>"> Edituj </button>
             <button type="submit" name="obrisiDugme" value="<?php echo $x;?>"> Obriši </button>
@@ -246,13 +247,13 @@ if(isset($_POST['dodajPoslovnicu']))
         <br>
         <br>
         <?php
-        // Ako je user admin, onda moze dodavati nove poslovnice, vidjeti PDF izvjestaj i downloadovati CSV file 
+        // Ako je user admin, onda moze dodavati nove poslovnice, vidjeti PDF izvjestaj i downloadovati CSV file
         if(isset($_SESSION['user']) && $_SESSION['user'] == "admin"){ ?>
-        <div class="col-3" style="display:inline-block;">    
+        <div class="col-3" style="display:inline-block;">
           <form align='center' id='poslovniceForma' action='about.php' method='post'>
           <br>
-           <input type='text' id="adresaPoslovnice" name='adresa' placeholder='Adresa'>
-            <input type='text' id="brTelefonaPoslovnice" name='brojTelefona' placeholder='Broj telefona'>
+           <input type='text' id="adresaPoslovnice" name='adresa' placeholder='Adresa poslovnice'>
+            <input type='text' id="brTelefonaPoslovnice" name='brojTelefona' placeholder='Broj telefona poslovnice'>
             <input type='text' id="idSefa" name='id' placeholder='ID šefa'>
             <input id='dodajPoslovnicu-button' name='dodajPoslovnicu' type='submit' value='Dodaj' />
             </form>
@@ -267,7 +268,7 @@ if(isset($_POST['dodajPoslovnicu']))
         </div>
 
         <?php if(isset($_SESSION['user']) && $_SESSION['user'] == "admin"){ ?>
-        <div class="col-3" style="display:inline-block;">    
+        <div class="col-3" style="display:inline-block;">
         <!-- Tabela sa sefovima kojim nije dodijeljena poslovnica -->
         <table border="1px solid black" style="margin-left:-20px;" align="center" style="width:80%" bgcolor="#ffffff">
         <!-- Zaglavlje tabele -->
@@ -276,37 +277,46 @@ if(isset($_POST['dodajPoslovnicu']))
             <th>Ime šefa</th>
             <th>Prezime šefa</th>
           </tr>
-            <?php 
+            <?php
             $query = $veza->prepare("SELECT * from Osoba WHERE uloga='sef' and id NOT IN (SELECT sef FROM Poslovnica)");
             $query->execute();
             $array = $query->fetchAll(PDO::FETCH_ASSOC);
             foreach($array as $row)
             {
               ?>
-                <tr> 
+                <tr>
                 <td align="center"> <?php print $row['id'] ?> </th>
                 <td align="center"> <?php print $row['ime'] ?> </th>
                 <td align="center"> <?php print $row['prezime'] ?> </th>
         <?php }?>
         </table>
         <br>
-        <form method="post" action="register.php">
+        <form style="padding-left:5%"method="post" action="register.php">
             <input name='dodajSefa' type='submit' value='Dodaj novog šefa'/>
         </form>
         </div>
+        <div>
+          <form style="padding-left: 3.8%" action="xmltodb.php" method="post">
+            <input type='submit' name='korisniciUBazu' value='Prebaci korisnike u bazu'/>
+            <br>
+            <br>
+            <input type='submit' name='poslovniceUBazu' value='Prebaci poslovnice u bazu'/>
+            </form>
+        </div>
+        <br>
         <?php } ?>
-
-          <!-- Izvjestaj u PDF-u i csv file -->
+          <!--Izvjestaj u PDF-u i csv file -->
           <!-- Izvjestaj u PDF-u mogu vidjeti svi, pa čak i neregistrovani korisnici, dok csv file može downloadovati samo admin-->
-          <!--<div style="padding-left:43%; padding-top:2%;">
-            <form <?php if(!isset($_SESSION['user']) || $_SESSION['user'] == "guest") { ?> style="display:inline-block; margin-left: 50px;" <?php } else { ?>  style="display:inline-block;" <?php } ?> id="izvjestajForma" action="izvjestaj.php">
+          <div style="padding-left:3.8%;">
+              <form action="izvjestaj.php" method="post">
               <input id="izvjestaj-button" type="submit" value="PDF izvještaj">
             </form>
+            <br>
             <?php if(isset($_SESSION['user']) && $_SESSION['user'] == "admin") { ?>
             <form style="display:inline-block;" id="downloadForma" action="downloadcsv.php">
               <input id="download-button" type="submit" value="Download csv">
             </form>
-            <?php } ?>-->
+            <?php } ?>
             <!--</br>
             </br>
             </br>-->
