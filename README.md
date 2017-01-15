@@ -31,7 +31,7 @@ Spirala 4:
 - Pristupni podaci za admina su admin@admin.com, password: tajna
 - Pristupni podaci za jednog korisnika su lejla@gmail.com, password: lejla
 - Pristupni podaci za jednog sefa su elgo@popmusic.com, password: tesselate
-- Na About stranici, forma za search koja je napravljena u trećoj spirali je zakomentarisana.
+- Na About stranici, forma za search koja je napravljena u trećoj spirali je sada na stranici stock.php i pretražuje poslovnice i artikle. Kod za pretragu je i dalje u search.php.
 - Na About stranici i dalje postoji mogućnost pregleda izvještaja i downloadovanja csv-a. U izvještaju i csv file-u se sada nalaze adresa i broj telefona poslovnice, te ime i prezime njenog šefa. Podaci se čitaju iz baze podataka.
 - Na About stranici, admin ima mogućnost dodavanja nove poslovnice. Pošto se sada poslovnica dodaje u bazu, gdje je potrebno dodati i šefa, pored forme za dodavanje nalazi se lista osoba čija je uloga šef, a koje nisu još dodijeljene kao šef nijednoj poslovnici. Na taj način, admin može da vidi koji je id osobe koju želi dodijeliti kao šefa poslovnici i upisati ga u polje predviđeno za to.
 - Ukoliko admin ne želi da kao šefa postavi već postojeću osobu, već želi da doda novog šefa u bazu, klikom na dugme "Dodaj novog šefa", usmjerava se na formu u kojoj popunjava podatke za šefa.

@@ -3,8 +3,8 @@
   // $xml = new DOMDocument('1.0', 'UTF-8');
   // $xml->load('poslovnice.xml');
 
-  $veza = new PDO("mysql:dbname=starwarsdb;host=localhost;charset=utf8", "swuser", "swpass");
-
+  // $veza = new PDO("mysql:dbname=starwarsdb;host=localhost;charset=utf8", "swuser", "swpass");
+  $veza = new PDO('mysql:host=' . getenv('MYSQL_SERVICE_HOST') . ';port=3306;dbname=starwarsdb', 'swuser', 'swpass');
   $error_telefon = false;
   $error_vecPostojeci = false;
   $edit = false;
@@ -93,36 +93,6 @@ if(isset($_POST['dodajPoslovnicu']))
     <title>About</title>
     <link rel="stylesheet" href="css/style.css">
     <script>
-            function prikaziRezultate(unos)
-            {
-                var rezultati = document.getElementById("rezultati");
-
-                //Ako nije nista upisano
-                if (unos.length == 0)
-                {
-                    rezultati.innerHTML = "";
-                    rezultati.style.border = "0px";
-                    return;
-                }
-
-                if (window.XMLHttpRequest) httprequest = new XMLHttpRequest();
-                else httprequest = new ActiveXObject("Microsoft.XMLHTTP");
-
-                httprequest.onreadystatechange = function()
-                {
-                    if (this.readyState == 4 && this.status == 200)
-                    {
-                        rezultati.innerHTML = this.responseText;
-                        rezultati.style.position = "absolute";
-                        rezultati.style.backgroundColor = "black";
-                        rezultati.style.color = "white";
-                    }
-                }
-
-                httprequest.open("GET", "search.php?q=" + unos, true);
-                httprequest.send();
-            }
-
             function getJSON(id)
             {
                 var ajax = new XMLHttpRequest();
@@ -316,15 +286,7 @@ if(isset($_POST['dodajPoslovnicu']))
               <input id="download-button" type="submit" value="Download csv">
             </form>
             <?php } ?>
-            <!--</br>
-            </br>
-            </br>-->
-            <!-- FORMA ZA SEARCH -->
-            <!--<form style="margin-left: -20px">
-              <input style="color:black;" type="text" size="25" placeholder="Search" onkeyup="prikaziRezultate(this.value)">
-              <button> Pretraži </button>
-              <div id="rezultati"></div>
-            </form>-->
+
       <script src="script/skripta.js" type="text/javascript"></script>
   </body>
   </html>

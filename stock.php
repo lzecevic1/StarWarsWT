@@ -1,8 +1,8 @@
 <?php
-
     session_start();
 
-    $veza = new PDO("mysql:dbname=starwarsdb;host=localhost;charset=utf8", "swuser", "swpass");
+    // $veza = new PDO("mysql:dbname=starwarsdb;host=localhost;charset=utf8", "swuser", "swpass");
+  $veza = new PDO('mysql:host=' . getenv('MYSQL_SERVICE_HOST') . ';port=3306;dbname=starwarsdb', 'swuser', 'swpass');
 ?>
 
 <html>
@@ -12,6 +12,37 @@
          <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Star Wars Details</title>
         <link rel="stylesheet" href="css/style.css">
+        <script>
+            function prikaziRezultate(unos)
+            {
+                var rezultati = document.getElementById("rezultati");
+
+                //Ako nije nista upisano
+                if (unos.length == 0)
+                {
+                    rezultati.innerHTML = "";
+                    rezultati.style.border = "0px";
+                    return;
+                }
+
+                if (window.XMLHttpRequest) httprequest = new XMLHttpRequest();
+                else httprequest = new ActiveXObject("Microsoft.XMLHTTP");
+
+                httprequest.onreadystatechange = function()
+                {
+                    if (this.readyState == 4 && this.status == 200)
+                    {
+                        rezultati.innerHTML = this.responseText;
+                        rezultati.style.position = "absolute";
+                        rezultati.style.backgroundColor = "black";
+                        rezultati.style.color = "white";
+                    }
+                }
+
+                httprequest.open("GET", "search.php?q=" + unos, true);
+                httprequest.send();
+            }
+        </script>
     </head>
     <body class="page">
     <div class="header-standard">
@@ -52,6 +83,15 @@
            <?php } ?>
           </table>
           </div>
+
+            <div class="col-5" style="padding-top:2%; padding-left:5%">
+            <!-- FORMA ZA SEARCH -->
+            <form>
+              <input style="color:black;" type="text" size="25" placeholder="Search" onkeyup="prikaziRezultate(this.value)">
+              <button> Pretraži </button>
+              <div id="rezultati"></div>
+            </form>
+            </div>
         <script src="script/skripta.js" type="text/javascript"></script>
     </body>
 </html>

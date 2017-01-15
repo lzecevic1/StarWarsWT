@@ -1,7 +1,10 @@
 <?php
 
-    $veza = new PDO("mysql:dbname=starwarsdb;host=localhost;charset=utf8", "swuser", "swpass");
+    // $veza = new PDO("mysql:dbname=starwarsdb;host=localhost;charset=utf8", "swuser", "swpass");
+    $veza = new PDO('mysql:host=' . getenv('MYSQL_SERVICE_HOST') . ';port=3306;dbname=starwarsdb', 'swuser', 'swpass');
+
     
+    /* PREBACIVANJE KORISNIKA U BAZU */
     if(isset($_REQUEST['korisniciUBazu']))
     {
         // Posto u XML-u nismo drzali id osobe, sada pretragu da li osoba postoji u bazi ne mozemo izvrsiti na osnovu id-a, vec cemo izvrsiti na osnovu svih ostalih polja
@@ -34,7 +37,8 @@
             }
         }
     }
-
+    
+    /* PREBACIVANJE POSLOVNICA U BAZU */
     if(isset($_REQUEST['poslovniceUBazu']))
     {
         $xml = simplexml_load_file('poslovnice.xml'); 

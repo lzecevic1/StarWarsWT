@@ -1,58 +1,56 @@
 <?php
-  $xml = new DOMDocument();
-  $xml->load("poslovnice.xml");
 
-  $data = $xml->getElementsByTagName('Podaci');
+    // $veza = new PDO("mysql:dbname=starwarsdb;host=localhost;charset=utf8", "swuser", "swpass");
+  $veza = new PDO('mysql:host=' . getenv('MYSQL_SERVICE_HOST') . ';port=3306;dbname=starwarsdb', 'swuser', 'swpass');
 
   // parametar iz URL
   $suggestion = $_GET["q"];
+  $query = $veza->prepare("SELECT a.adresa, r.naziv, s.kolicina from poslovnica a, artikal r, skladiste s where a.id = s.poslovnica and r.id = s.artikal");
+  $query->execute();
+  $result = $query->fetchAll(PDO::FETCH_ASSOC);
+  $adrese = [];
+  $artikli = [];
+  foreach($result as $r)
+  {
+    array_push($adrese,$r['adresa']);
+    array_push($artikli,$r['naziv']);
+  }
+
 
   if (strlen($suggestion) > 0) // ako suggestion postoji
   {
     $rez = "";
     $brojRezultata = 0;
 
-    for($i = 0; $i < $data->length; $i++) 
+    for($i = 0; $i < count($adrese); $i++) 
     {
-      $adrese = $data->item($i)->getElementsByTagName('Adresa');
-      $telefoni = $data->item($i)->getElementsByTagName('BrojTelefona');
-      $vrijeme = $data->item($i)->getElementsByTagName('RadnoVrijeme');
-
-      if ($adrese->item(0)->nodeType==1) 
-      {
-        if (stristr($adrese->item(0)->childNodes->item(0)->nodeValue, $suggestion)) 
+        if (stristr($adrese[$i], $suggestion)) 
         {
           $brojRezultata++;
           if ($rez == "") 
           {
-            $rez = $adrese->item(0)->childNodes->item(0)->nodeValue;
+            $rez = $adrese[$i];
           } 
           else 
           {
-            $rez = $rez . "<br />" .  $adrese->item(0)->childNodes->item(0)->nodeValue;
+            $rez = $rez . "<br />" . $adrese[$i];
           }
         }
-      }
 
-      if($telefoni->item(0)->nodeType == 1)
-      {
-        if (stristr($telefoni->item(0)->childNodes->item(0)->nodeValue, $suggestion))
+        if (stristr($artikli[$i], $suggestion))
         {
           $brojRezultata++;
           if ($rez == "") 
           {
-            $rez = $telefoni->item(0)->childNodes->item(0)->nodeValue;
+            $rez = $artikli[$i];
           } 
           else 
           {
-            $rez = $rez . "<br />" .  $telefoni->item(0)->childNodes->item(0)->nodeValue;
+            $rez = $rez . "<br />" . $artikli[$i];
           }
         }
       }
-
       if($brojRezultata == 10) break;
-
-    }
   }
 
     if ($rez == "") $izlaz = "Nema rezultata";
