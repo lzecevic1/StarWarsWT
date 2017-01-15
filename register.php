@@ -12,7 +12,7 @@
 
             // $veza = new PDO("mysql:dbname=starwarsdb;host=localhost;charset=utf8", "swuser", "swpass");
             // $veza = new PDO('mysql:host=' . getenv('MYSQL_SERVICE_HOST') . ';port=3306;dbname=starwarsdb', 'swuser', 'swpass');
-            $veza = new PDO("mysql:dbname=dbstarwars;host=mysql-57-centos7", "swuser", "swpassword");
+            $veza = new PDO("mysql:dbname=starwarsdb;host=mysql-57-centos7", "swuser", "swpassword");
             /* PROVJERA DA LI U BAZI VEC POSTOJI KORISNIK SA ISTIM EMAILOM */
             $provjera = $veza->prepare("SELECT COUNT(*) FROM Osoba WHERE email=?");
             $provjera->bindValue(1, htmlspecialchars($email, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
