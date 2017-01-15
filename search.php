@@ -1,8 +1,9 @@
 <?php
 
-    // $veza = new PDO("mysql:dbname=starwarsdb;host=localhost;charset=utf8", "swuser", "swpass");
-  $veza = new PDO('mysql:host=' . getenv('MYSQL_SERVICE_HOST') . ';port=3306;dbname=starwarsdb', 'swuser', 'swpass');
-
+  // $veza = new PDO("mysql:dbname=starwarsdb;host=localhost;charset=utf8", "swuser", "swpass");
+  // $veza = new PDO('mysql:host=' . getenv('MYSQL_SERVICE_HOST') . ';port=3306;dbname=starwarsdb', 'swuser', 'swpass');
+  $veza = new PDO("mysql:dbname=dbstarwars;host=mysql-57-centos7", "swuser", "swpassword");
+  
   // parametar iz URL
   $suggestion = $_GET["q"];
   $query = $veza->prepare("SELECT a.adresa, r.naziv, s.kolicina from poslovnica a, artikal r, skladiste s where a.id = s.poslovnica and r.id = s.artikal");

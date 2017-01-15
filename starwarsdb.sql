@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2017 at 12:00 PM
+-- Generation Time: Jan 15, 2017 at 02:26 PM
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `starwarsdb`
 --
+CREATE DATABASE IF NOT EXISTS `starwarsdb` DEFAULT CHARACTER SET utf8 COLLATE utf8_slovenian_ci;
+USE `starwarsdb`;
 
 -- --------------------------------------------------------
 
@@ -26,6 +28,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `artikal`
 --
 
+DROP TABLE IF EXISTS `artikal`;
 CREATE TABLE `artikal` (
   `id` int(11) NOT NULL,
   `naziv` varchar(50) COLLATE utf8_slovenian_ci NOT NULL,
@@ -39,7 +42,8 @@ CREATE TABLE `artikal` (
 
 INSERT INTO `artikal` (`id`, `naziv`, `opis`, `cijena`) VALUES
 (1, 'Stormtrooper poster', 'A stormtrooper is a fictional soldier in the Star Wars franchise created by George Lucas. ', 5),
-(2, 'Darth Vader kostim', 'Darth Vader, also known by his birth name Anakin Skywalker, is a fictional character in the Star Wars film franchise.', 50);
+(2, 'Darth Vader kostim', 'Darth Vader, also known by his birth name Anakin Skywalker, is a fictional character in the Star Wars film franchise.', 50),
+(3, 'Jabba the Hutt kostim', 'Jabba the Hutt was one of the galaxy’s most powerful gangsters, with far-reaching influence in both politics and the criminal underworld.', 55);
 
 -- --------------------------------------------------------
 
@@ -47,6 +51,7 @@ INSERT INTO `artikal` (`id`, `naziv`, `opis`, `cijena`) VALUES
 -- Table structure for table `osoba`
 --
 
+DROP TABLE IF EXISTS `osoba`;
 CREATE TABLE `osoba` (
   `id` int(11) NOT NULL,
   `ime` varchar(50) COLLATE utf8_slovenian_ci NOT NULL,
@@ -65,7 +70,8 @@ INSERT INTO `osoba` (`id`, `ime`, `prezime`, `email`, `password`, `uloga`) VALUE
 (3, 'Bruce', 'Dickinson', 'bruced@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'sef'),
 (24, 'Lejla', 'Zecevic', 'lejla@gmail.com', 'df3c496edbd8121b6bb7149ad2b96fb0', 'user'),
 (25, 'Ellie', 'Goulding', 'elgo@popmusic.com', '81b03a352693413fc7d91411400ae72a', 'sef'),
-(27, 'Nermin', 'Puskar', 'npusko@gmail.com', '3ae42522f7f6c51c0e3328269d0e1e4a', 'sef');
+(27, 'Nermin', 'Puskar', 'npusko@gmail.com', '3ae42522f7f6c51c0e3328269d0e1e4a', 'sef'),
+(28, 'Frodo', 'Baggins', 'frodob@lotr.com', 'f92c4644b194b5872df6971e18f638ca', 'sef');
 
 -- --------------------------------------------------------
 
@@ -73,6 +79,7 @@ INSERT INTO `osoba` (`id`, `ime`, `prezime`, `email`, `password`, `uloga`) VALUE
 -- Table structure for table `poslovnica`
 --
 
+DROP TABLE IF EXISTS `poslovnica`;
 CREATE TABLE `poslovnica` (
   `id` int(11) NOT NULL,
   `adresa` varchar(100) COLLATE utf8_slovenian_ci NOT NULL,
@@ -86,7 +93,8 @@ CREATE TABLE `poslovnica` (
 
 INSERT INTO `poslovnica` (`id`, `adresa`, `telefon`, `sef`) VALUES
 (1, 'Zmaja od Bosne bb', '033 234 567', 3),
-(7, 'Semira Fraste 7', '033 556 777', 25);
+(7, 'Semira Fraste 7', '033 556 777', 25),
+(8, 'Trg Grada Prato 2', '033 667 888', 27);
 
 -- --------------------------------------------------------
 
@@ -94,6 +102,7 @@ INSERT INTO `poslovnica` (`id`, `adresa`, `telefon`, `sef`) VALUES
 -- Table structure for table `skladiste`
 --
 
+DROP TABLE IF EXISTS `skladiste`;
 CREATE TABLE `skladiste` (
   `id` int(11) NOT NULL,
   `poslovnica` int(11) NOT NULL,
@@ -107,7 +116,9 @@ CREATE TABLE `skladiste` (
 
 INSERT INTO `skladiste` (`id`, `poslovnica`, `artikal`, `kolicina`) VALUES
 (1, 1, 1, 10),
-(2, 1, 2, 2);
+(2, 1, 2, 2),
+(3, 8, 3, 10),
+(4, 7, 1, 15);
 
 --
 -- Indexes for dumped tables
@@ -148,7 +159,7 @@ ALTER TABLE `skladiste`
 -- AUTO_INCREMENT for table `artikal`
 --
 ALTER TABLE `artikal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `osoba`
 --
@@ -158,12 +169,12 @@ ALTER TABLE `osoba`
 -- AUTO_INCREMENT for table `poslovnica`
 --
 ALTER TABLE `poslovnica`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `skladiste`
 --
 ALTER TABLE `skladiste`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- Constraints for dumped tables
 --
