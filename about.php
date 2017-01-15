@@ -1,11 +1,9 @@
 <?php
   session_start();
-  // $xml = new DOMDocument('1.0', 'UTF-8');
-  // $xml->load('poslovnice.xml');
-
   // $veza = new PDO("mysql:dbname=starwarsdb;host=localhost;charset=utf8", "swuser", "swpass");
   $veza = new PDO('mysql:host=' . getenv('MYSQL_SERVICE_HOST') . ';port=3306;dbname=starwarsdb', 'swuser', 'swpass');
   // $veza = new PDO("mysql:dbname=starwarsdb;host=mysql-57-centos7", "swuser", "swpass");
+  $veza->exec("set names utf8");
   $error_telefon = false;
   $error_vecPostojeci = false;
   $edit = false;
@@ -175,8 +173,7 @@ if(isset($_POST['dodajPoslovnicu']))
       <!-- PHP kod za dodavanje poslovnica iz baze u tabelu -->
       <?php
         $x = 0;
-        $query = $veza->prepare("SELECT * FROM Poslovnica");
-        $query->execute();
+        $query = $veza->query("select * FROM Poslovnica");
         $poslovnice = $query->fetchAll(PDO::FETCH_ASSOC);
         foreach($poslovnice as $poslovnica)
         { ?>
