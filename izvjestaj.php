@@ -64,7 +64,6 @@ class PDF extends FPDF
     $veza = new PDO('mysql:host=' . getenv('MYSQL_SERVICE_HOST') . ';port=3306;dbname=starwarsdb', 'swuser', 'swpass');
     $query = $veza->query("select p.adresa, p.telefon, i.ime, i.prezime from poslovnica p, osoba i where i.id = p.sef");
     $result = $query->fetchAll((PDO::FETCH_ASSOC));
-    var_dump($result);
     $pdf->BasicTable($header, $result);
     $pdf->SetX(15);
     $pdf->SetY(40);
