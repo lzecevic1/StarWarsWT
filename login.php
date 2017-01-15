@@ -32,7 +32,6 @@
               <li><a href="planets.php">Planets</a></li>
               <li><a href="jedi.php">Jedi</a></li>
               <li><a href="siths.php">Siths</a></li>
-              <li><a href="shop.php">Shop</a></li>
               <li><a href="about.php">About us</a></li>
               <li><a href="contact.php">Contact</a></li>
               <li><a href="login.php">Log in</a></li>

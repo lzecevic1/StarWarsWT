@@ -40,9 +40,10 @@ Spirala 4:
 - Pošto sam u trećoj spirali imala samo dva XML-a, prvi u koji sam upisivala korisnike po registraciji, a drugi u koji sam upisivala poslovnice, odradila sam prebacivanje podataka u bazu iz ta dva XML-a. 
 - Na stranici about.php, ukoliko je logovan admin, postoje dva button-a, Prebaci korisnike u bazu i Prebaci poslovnice u bazu. Klikom na bilo koje od ovih dugmadi, poziva se skripta xmltodb.php.
 - U gore navedene XML file-ove sam dodala jednu adresu i jednog korisnika koji nisu u bazi, da asistent može testirati ovu funkcionalnost prilikom pregledanja spirale :)
-- Šef na stranici shop.php može da pregleda i da doda nove artikle.
+- Šef i admin na stranici shop.php mogu pregledati artikle i dodati nove.
 - Na shop.php se nalazi i tabela sa adresama i ID-evima poslovnice, kao i forma u kojoj šef može unijeti ID artikla, ID poslovnice, kao i količinu artikla u nekoj poslovnici.
-
+- Dodana je stranica stock.php, gdje admin i šef mogu da pogledaju koliko artikala ima u nekoj poslovnici.
+- Moglo bi se još dodati jedna stranica na kojoj admin može da pregleda i edituje, te eventualno briše korisnike, ali ista logika je korištena pri editovanju i brisanju poslovnica.
 
 II - Sta nije uradjeno?
 - Odgovarajuci tekstovi (koristen je Lorem ipsum)

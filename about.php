@@ -169,6 +169,7 @@ if(isset($_POST['dodajPoslovnicu']))
           <li><a href="jedi.php">Jedi</a></li>
           <li><a href="siths.php">Siths</a></li>
           <li><a href="shop.php">Shop</a></li>
+          <li><a href="stock.php">Stock</a></li>
           <li><a href="about.php">About us</a></li>
           <li><a href="logout.php">Log out</a></li>
         </ul>
@@ -188,8 +189,6 @@ if(isset($_POST['dodajPoslovnicu']))
             </ul>
         <?php } ?>
         </div>
-
-
     <br>
     <br>
     <br>

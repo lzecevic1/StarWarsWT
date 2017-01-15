@@ -53,44 +53,6 @@
             }
         }
     }
-
-    // XML DIO 
-    // $xml = new DOMDocument();
-    // $xml->load('users.xml');
-    // if(isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) && isset($_POST['password']))
-    // {
-    //     $_SESSION['user'] = $_POST;
-    //     $rootTag = $xml->getElementsByTagName("Korisnici")->item(0);
-
-    //     $dataTag = $xml->createElement("Podaci");
-
-    //     $ulogaTag = $xml->createElement("Uloga", "user");
-
-    //     $imeTag = $xml->createElement("Ime");
-    //     $imeTag->appendChild($xml->createTextNode(htmlspecialchars($_REQUEST['name'], ENT_QUOTES, "UTF-8")));
-
-    //     $prezimeTag  = $xml->createElement("Prezime");
-    //     $prezimeTag->appendChild($xml->createTextNode(htmlspecialchars($_REQUEST['surname'], ENT_QUOTES, "UTF-8")));
-
-    //     $emailTag = $xml->createElement("Email");
-    //     $emailTag->appendChild($xml->createTextNode(htmlspecialchars($_REQUEST['email'], ENT_QUOTES, "UTF-8")));
-
-    //     $pswTag = $xml->createElement("Password");
-    //     $pswTag->appendChild($xml->createTextNode(htmlspecialchars($_REQUEST['password'], ENT_QUOTES, "UTF-8")));
-            
-    //     $dataTag->appendChild($ulogaTag);
-    //     $dataTag->appendChild($imeTag);
-    //     $dataTag->appendChild($prezimeTag);
-    //     $dataTag->appendChild($emailTag);
-    //     $dataTag->appendChild($pswTag);
-
-    //     $rootTag->appendChild($dataTag);
-    //     $xml->save('users.xml');
-    //     header('Location:index.php');
-    //     $_SESSION['user'] = "guest";
-    //     $email = $_POST['email'];
-    //     $password = $_POST['password'];
-    // }
 ?>
 
 <!DOCTYPE html>
@@ -98,7 +60,7 @@
     <head>
         <meta charset="UTF-8">
          <meta name="viewport" content="width=device-width, initial-scale=1">
-        <?php if($_SESSION['user'] != "admin") {?> 
+        <?php if(isset($_SESSION['user']) && $_SESSION['user'] != "admin") {?> 
         <title>Sign Up!</title>
         <?php } ?>
         <link rel="stylesheet" href="css/style.css">
@@ -107,7 +69,7 @@
     <div class="header-standard">
       <img id="menicon" src="./images/menu-icon.png" data-toggle="dropdown" onclick="showMenu()">
       <?php if(isset($_SESSION['user'])){
-        if($_SESSION['user'] == "admin" || $_SESSION['user'] == "guest") { ?>
+        if($_SESSION['user'] == "guest"){ ?>
         <ul id="meni">
           <li><a id="home-link" href="index.php">Star Wars Details</a></li>
           <li><a href="planets.php">Planets</a></li>
@@ -118,14 +80,27 @@
           <li><a href="contact.php">Contact</a></li>
           <li><a href="logout.php">Log out</a></li>
         </ul>
-        <?php } } 
+        <?php }
+        if($_SESSION['user'] == "admin" || $_SESSION['user'] == "sef"){ ?>
+        <ul id="meni">
+          <li><a id="home-link" href="index.php">Star Wars Details</a></li>
+          <li><a href="planets.php">Planets</a></li>
+          <li><a href="jedi.php">Jedi</a></li>
+          <li><a href="siths.php">Siths</a></li>
+          <li><a href="shop.php">Shop</a></li>
+          <li><a href="stock.php">Stock</a></li>
+          <li><a href="about.php">About us</a></li>
+          <li><a href="logout.php">Log out</a></li>
+        </ul>
+        <?php }
+        }
+        // Neregistrovan posjetilac stranice ne može posjetiti shop
           if((!isset($_SESSION['user']) || $_SESSION['user'] == "unknown")) { ?>
             <ul id="meni">
               <li><a id="home-link" href="index.php">Star Wars Details</a></li>
               <li><a href="planets.php">Planets</a></li>
               <li><a href="jedi.php">Jedi</a></li>
               <li><a href="siths.php">Siths</a></li>
-              <li><a href="shop.php">Shop</a></li>
               <li><a href="about.php">About us</a></li>
               <li><a href="contact.php">Contact</a></li>
               <li><a href="login.php">Log in</a></li>

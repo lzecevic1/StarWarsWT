@@ -66,7 +66,19 @@
     <div class="header-standard">
       <img id="menicon" src="./images/menu-icon.png" data-toggle="dropdown" onclick="showMenu()">
       <?php if(isset($_SESSION['user'])){
-        if($_SESSION['user'] == "admin" || $_SESSION['user'] == "guest"|| $_SESSION['user'] == "sef") { ?>
+        if($_SESSION['user'] == "admin" || $_SESSION['user'] == "sef") { ?>
+        <ul id="meni">
+          <li><a id="home-link" href="index.php">Star Wars Details</a></li>
+          <li><a href="planets.php">Planets</a></li>
+          <li><a href="jedi.php">Jedi</a></li>
+          <li><a href="siths.php">Siths</a></li>
+          <li><a href="shop.php">Shop</a></li>
+          <li><a href="stock.php">Stock</a></li>
+          <li><a href="about.php">About us</a></li>
+          <li><a href="logout.php">Log out</a></li>
+        </ul>
+        <?php }
+        if($_SESSION['user'] == "guest") { ?>
         <ul id="meni">
           <li><a id="home-link" href="index.php">Star Wars Details</a></li>
           <li><a href="planets.php">Planets</a></li>
@@ -77,7 +89,7 @@
           <li><a href="contact.php">Contact</a></li>
           <li><a href="logout.php">Log out</a></li>
         </ul>
-        <?php } } 
+         <?php } } 
           if((!isset($_SESSION['user']) || $_SESSION['user'] == "unknown")) { ?>
             <ul id="meni">
               <li><a id="home-link" href="index.php">Star Wars Details</a></li>
@@ -114,7 +126,7 @@
                             <input id="kupi-button" type="submit" value="Kupi">
                       </li>
                 </div>
-        </div>
+               </div>
                 <div class="col-2">          
                 <div class="shop-article">
                     <h2> Privjesak</h2>
@@ -125,14 +137,17 @@
                             <input id="kupi-button" type="submit" value="Kupi">
                       </li>
                 </div>
-        </div>
+                </div>
         <?php }?>
     <br>
     <br>
     <br>
-        <?php if($_SESSION['user'] == "sef"){ ?>
+        <?php if($_SESSION['user'] == "sef" || $_SESSION['user'] == "admin"){ ?>
+
+        <div class="col-5">
+        <div class="col-3">
         <!-- Tabela sa artiklima -->
-          <table  border="1px solid black" align="center" style="width:94%" bgcolor="#ffffff">
+          <table  border="1px solid black" align="center" style="width:90%" bgcolor="#ffffff">
           <!-- Zaglavlje tabele -->
             <tr>
               <th>ID artikla</th>
@@ -155,34 +170,11 @@
             </tr>
            <?php } ?>
           </table>
-        <br>
-        <br>
-          <!-- FORMA ZA UNOS ARTIKLA -->
-            <div class="col-3" style="display:inline-block;">
-            <form align='center' id="contact_form" method="post" action="shop.php">
-              <input placeholder="Naziv artikla" name="naziv" required/>
-              <input placeholder="Cijena artikla" name="cijena" type="number" required/>
-              <input placeholder="Opis artikla" name="opis" required/>
-                    <!--<p id="warningMessage"> </p>-->
-            <input name="dodajArtikal" type="submit" value="Dodaj artikal" />
-            </form>	
           </div>
-          <br>
-          <br>
-          <div class="col-5"style="display:inline-block">
-              <!-- FORMA ZA UNOS ARTIKLA U SKLADIŠTE NEKE POSLOVNICE -->
-          <div class="col-6">
-          <form  style="padding-left: 3.8%" id="contact_form" method="post" action="shop.php">
-            <input placeholder="ID poslovnice" name="idPoslovnice" type="number" required/>
-              <input placeholder="ID artikla" name="idArtikla" type="number" required/>
-              <input placeholder="Količina" name="kolicina" type="number" required/>
-                    <!--<p id="warningMessage"> </p>-->
-            <input name="dodajArtikalSkladiste" type="submit" value="Dodaj artikal u skladište" />
-            </form>	
-          </div>
+
            <!--Tabela sa adresom poslovnice i ID-em poslovnice -->
-          <div  class="col-7">
-          <table border="1px solid black" style=" width:75%" bgcolor="#ffffff">
+          <div  class="col-3">
+          <table border="1px solid black" style=" width:90%" bgcolor="#ffffff">
           <!-- Zaglavlje tabele -->
             <tr>
               <th>ID poslovnice</th>
@@ -203,6 +195,27 @@
           </table>
           </div>
           </div>
+
+          <!-- FORMA ZA UNOS ARTIKLA -->
+            <div class="col-5">
+            <form style="padding-left: 2.5%; padding-top:1%;" method="post" action="shop.php">
+              <input placeholder="Naziv artikla" name="naziv" required/>
+              <input placeholder="Cijena artikla" name="cijena" type="number" required/>
+              <input placeholder="Opis artikla" name="opis" required/>
+              <input name="dodajArtikal" type="submit" value="Dodaj artikal" />
+            </form>	
+            </div>
+              <!-- FORMA ZA UNOS ARTIKLA U SKLADIŠTE NEKE POSLOVNICE -->
+          <div class="col-5">
+          <form style="padding-left: 2.5%; padding-top:1%;" method="post" action="shop.php">
+            <input placeholder="ID poslovnice" name="idPoslovnice" type="number" required/>
+              <input placeholder="ID artikla" name="idArtikla" type="number" required/>
+              <input placeholder="Količina" name="kolicina" type="number" required/>
+                    <!--<p id="warningMessage"> </p>-->
+            <input name="dodajArtikalSkladiste" type="submit" value="Dodaj artikal u skladište" />
+            </form>	
+          </div>
+
         <?php } ?>
         <script src="script/skripta.js" type="text/javascript"></script>
     </body>
