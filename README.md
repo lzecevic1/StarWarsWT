@@ -25,6 +25,7 @@ I - Sta je uradjeno?
 - Urađen je deployment, link: http://lzecevic1-wtprojekat.44fs.preview.openshiftapps.com/
 
 Spirala 4:
+- Za pregled tabela baze pogledati VI. 
 - Kada se korisnik registruje na register stranici, vrši se provjera email-a koji je unio. Ukoliko već postoji korisnik u bazi sa istim email-om, ispisuje se poruka o grešci, u suprotnom, korisnik se dodaje u bazu i njegova uloga je 'user'.
 - Kada korisnik želi da uradi login, vrši se provjera postojanja u bazi podataka. Ako korisnik ne postoji u bazi ili ako je šifra pogrešna, poruka o grešci se ispisuje.
 - Pristupni podaci za admina su admin@admin.com, password: tajna
@@ -39,6 +40,9 @@ Spirala 4:
 - Pošto sam u trećoj spirali imala samo dva XML-a, prvi u koji sam upisivala korisnike po registraciji, a drugi u koji sam upisivala poslovnice, odradila sam prebacivanje podataka u bazu iz ta dva XML-a. 
 - Na stranici about.php, ukoliko je logovan admin, postoje dva button-a, Prebaci korisnike u bazu i Prebaci poslovnice u bazu. Klikom na bilo koje od ovih dugmadi, poziva se skripta xmltodb.php.
 - U gore navedene XML file-ove sam dodala jednu adresu i jednog korisnika koji nisu u bazi, da asistent može testirati ovu funkcionalnost prilikom pregledanja spirale :)
+- Šef na stranici shop.php može da pregleda i da doda nove artikle.
+- Na shop.php se nalazi i tabela sa adresama i ID-evima poslovnice, kao i forma u kojoj šef može unijeti ID artikla, ID poslovnice, kao i količinu artikla u nekoj poslovnici.
+
 
 II - Sta nije uradjeno?
 - Odgovarajuci tekstovi (koristen je Lorem ipsum)
@@ -69,27 +73,27 @@ VI - Baza
 
 Baza sadrži 4 tabele: Osoba, Poslovnica, Artikal i Skladiste
 Tabela Osoba:
--id, int i PK
--ime, varchar 50
--prezime, varchar 50
--email, varchar 100
--uloga, varchar 10  (Uloga može biti: admin, sef ili user)
+- id, int i PK
+- ime, varchar 50
+- prezime, varchar 50
+- email, varchar 100
+- uloga, varchar 10  (Uloga može biti: admin, sef ili user)
 
 Tabela Poslovnica:
--id, int i PK
--adresa, varchar 100
--telefon, varchar 12
--sef, foreign key na osobu (odnosi se zapravo na osobu koja je odgovorna za poslovnicu)
+- id, int i PK
+- adresa, varchar 100
+- telefon, varchar 12
+- sef, foreign key na osobu (odnosi se zapravo na osobu koja je odgovorna za poslovnicu)
 
 Tabela Artikal:
--id, int i PK
--naziv, varchar
--opis, text
--cijena, float
+- id, int i PK
+- naziv, varchar
+- opis, text
+- cijena, float
 
 Tabela Skladiste (junction table, služi da prikaže koliko se nekih artikala nalazi u određenoj poslovnici):
--id, int i PK
--poslovnica, FK na poslovnicu
--artikal, FK na artikal
--kolicina, int
+- id, int i PK
+- poslovnica, FK na poslovnicu
+- artikal, FK na artikal
+- kolicina, int
 
