@@ -173,7 +173,7 @@
               <th>Adresa poslovnice</th>
             </tr>
             <?php 
-            $query = $veza->prepare("SELECT id, adresa from Poslovnica");
+            $query = $veza->prepare("select id, adresa from Poslovnica");
             $query->execute();
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
             foreach($result as $poslovnica)

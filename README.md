@@ -45,6 +45,8 @@ Spirala 4:
 - Na shop.php se nalazi i tabela sa adresama i ID-evima poslovnice, kao i forma u kojoj šef može unijeti ID artikla, ID poslovnice, kao i količinu artikla u nekoj poslovnici.
 - Dodana je stranica stock.php, gdje admin i šef mogu da pogledaju koliko artikala ima u nekoj poslovnici.
 - Moglo bi se još dodati jedna stranica na kojoj admin može da pregleda i edituje, te eventualno briše korisnike, ali ista logika je korištena pri editovanju i brisanju poslovnica.
+- Urađen je deployment, link: http://spiralasw-wtprojekat.44fs.preview.openshiftapps.com
+- Uočena greška: na stranici shop.php, kad se loguje šef ili admin, ne izlistaju se poslovnice i njihovi id-evi jer je query na 176. liniji bio neispravan. Greška je ispravljena nakon deploymenta.
 
 II - Sta nije uradjeno?
 - Odgovarajuci tekstovi (koristen je Lorem ipsum)
