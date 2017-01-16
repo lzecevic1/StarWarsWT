@@ -6,7 +6,7 @@
   
   // parametar iz URL
   $suggestion = $_GET["q"];
-  $query = $veza->prepare("SELECT a.adresa, r.naziv, s.kolicina from poslovnica a, artikal r, skladiste s where a.id = s.poslovnica and r.id = s.artikal");
+  $query = $veza->prepare("select a.adresa, r.naziv, s.kolicina from poslovnica a, artikal r, skladiste s where a.id = s.poslovnica and r.id = s.artikal");
   $query->execute();
   $result = $query->fetchAll(PDO::FETCH_ASSOC);
   $adrese = [];

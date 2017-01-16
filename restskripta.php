@@ -13,15 +13,15 @@ function rest_get($request, $data)
     $id = $data['id'];
     if($id != "")
     {
-        $query = $veza->prepare("SELECT * FROM Poslovnica WHERE id=?"); 
-        $query->bindValue(1, htmlspecialchars($data['id'], ENT_QUOTES, "UTF-8"), PDO::PARAM_INT);
+        $query = $veza->prepare("select * from poslovnica where id=:ID"); 
+        $query->bindValue(":ID", htmlspecialchars($data['id'], ENT_QUOTES, "UTF-8"), PDO::PARAM_INT);
         $query->execute();
         $result = $query->fetch(PDO::FETCH_ASSOC);
         echo json_encode($result);            
     }
     else
     {
-        $query = $veza->prepare("SELECT * FROM Poslovnica");
+        $query = $veza->prepare("select * from poslovnica");
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode($result);   

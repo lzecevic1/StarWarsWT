@@ -13,8 +13,8 @@
   if(isset($_POST['obrisiDugme']))
   {
     $id  = $_POST['id'];
-    $query = $veza->prepare("DELETE FROM Poslovnica WHERE id=?");
-    $query->bindValue(1, $id, PDO::PARAM_INT);
+    $query = $veza->prepare("delete from Poslovnica where id=:ID");
+    $query->bindValue(":ID", $id, PDO::PARAM_INT);
     $value = $query->execute();
   }
 
@@ -27,24 +27,22 @@
   // DONE
   if(isset($_POST['spasi']))
   {
-     $novaAdresa = $_POST['adresaEdit'];
-     $noviTelefon = $_POST['brojTelefonaEdit'];
+     $novaAdresa = htmlspecialchars($_POST['adresaEdit'], ENT_QUOTES, "UTF-8");
+     $noviTelefon = htmlspecialchars($_POST['brojTelefonaEdit'], ENT_QUOTES, "UTF-8");
+     
      if(preg_match("@0[0-9]{2}[ ][0-9]{3}[ ][0-9]{3}@", $noviTelefon) && $novaAdresa != "")
      {
         $id  = $_POST['id'];
         /* PROVJERA DA LI POSLOVNICA SA ADRESOM VEĆ POSTOJI */
-        $provjera = $veza->prepare("SELECT COUNT(*) FROM Poslovnica WHERE adresa=?");
-        $provjera->bindValue(1, (htmlspecialchars($novaAdresa, ENT_QUOTES, "UTF-8")), PDO::PARAM_STR);
+        $provjera = $veza->prepare("select count(*) from poslovnica where adresa=:Adresa");
+        $provjera->bindValue(":Adresa", $novaAdresa, PDO::PARAM_STR);
         $provjera->execute();
         $broj = $provjera->fetchColumn();
         if($broj > 0) $error_vecPostojeci = true;
         else
         {
-            $query = $veza->prepare("UPDATE Poslovnica SET adresa=?, telefon=? WHERE id=?");
-            $query->bindValue(1, (htmlspecialchars($novaAdresa, ENT_QUOTES, "UTF-8")), PDO::PARAM_STR);
-            $query->bindValue(2, (htmlspecialchars($noviTelefon, ENT_QUOTES, "UTF-8")), PDO::PARAM_STR);
-            $query->bindValue(3, $id, PDO::PARAM_INT);
-            $query->execute();
+            $query = $veza->prepare("update Poslovnica set adresa=:Adresa, telefon=:Telefon where id=:ID");
+            $query->execute(array($novaAdresa, $noviTelefon, $id));
         }
       }
 
@@ -58,13 +56,13 @@ if(isset($_POST['dodajPoslovnicu']))
 {
     if(isset($_POST['adresa']) && isset($_POST['brojTelefona']) && preg_match("@0[0-9]{2}[ ][0-9]{3}[ ][0-9]{3}@", $_POST['brojTelefona']))
     {
-        $adresa = $_POST['adresa'];
-        $brojTelefona = $_POST['brojTelefona'];
-        $id = $_POST['id'];
+        $adresa = htmlspecialchars($_POST['adresa'], ENT_QUOTES, "UTF-8");
+        $brojTelefona = htmlspecialchars($_POST['brojTelefona'], ENT_QUOTES, "UTF-8");
+        $id = htmlspecialchars($_POST['id'], ENT_QUOTES, "UTF-8");
 
           /* PROVJERA DA LI POSLOVNICA SA ADRESOM VEĆ POSTOJI */
-          $provjera = $veza->prepare("SELECT COUNT(*) FROM Poslovnica WHERE adresa=?");
-          $provjera->bindValue(1, (htmlspecialchars($adresa, ENT_QUOTES, "UTF-8")), PDO::PARAM_STR);
+          $provjera = $veza->prepare("select COUNT(*) from poslovnica where adresa=:Adresa");
+          $provjera->bindValue(":Adresa", $adresa, PDO::PARAM_STR);
           $provjera->execute();
           $broj = $provjera->fetchColumn();
 
@@ -72,13 +70,9 @@ if(isset($_POST['dodajPoslovnicu']))
 
           else
           {
-              $upit = $veza->prepare('INSERT INTO Poslovnica (id, adresa, telefon, sef)
-                VALUES (NULL, ?, ?, ?)');
-
-              $upit->bindValue(1, (htmlspecialchars($adresa, ENT_QUOTES, "UTF-8")), PDO::PARAM_STR);
-              $upit->bindValue(2, (htmlspecialchars($brojTelefona, ENT_QUOTES, "UTF-8")), PDO::PARAM_STR);
-              $upit->bindValue(3, (htmlspecialchars($id, ENT_QUOTES, "UTF-8")), PDO::PARAM_INT);
-              $upit->execute();
+              $upit = $veza->prepare('insert into poslovnica (id, adresa, telefon, sef)
+                VALUES (NULL, :Adresa, :Telefon, :Sef)');
+              $upit->execute(array($adresa, $brojTelefona, $id));
               header('Location:'.$_SERVER['PHP_SELF']);
           }
      }
@@ -173,10 +167,10 @@ if(isset($_POST['dodajPoslovnicu']))
       <!-- PHP kod za dodavanje poslovnica iz baze u tabelu -->
       <?php
         $x = 0;
-        $query = $veza->query("select * FROM Poslovnica");
-        $poslovnice = $query->fetchAll(PDO::FETCH_ASSOC);
+        $poslovnice = $veza->query("select * from poslovnica");
         foreach($poslovnice as $poslovnica)
         { ?>
+        
         <!-- Red tabele sadrži adresu, broj telefona poslovnice i dugmad za dodavanje i brisanje poslovnice -->
         <tr>
 
@@ -245,9 +239,7 @@ if(isset($_POST['dodajPoslovnicu']))
             <th>Prezime šefa</th>
           </tr>
             <?php
-            $query = $veza->prepare("SELECT * from Osoba WHERE uloga='sef' and id NOT IN (SELECT sef FROM Poslovnica)");
-            $query->execute();
-            $array = $query->fetchAll(PDO::FETCH_ASSOC);
+            $array = $veza->query("select * from osoba where uloga='sef' and id not in (select sef from poslovnica)");
             foreach($array as $row)
             {
               ?>

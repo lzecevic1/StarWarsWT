@@ -71,9 +71,7 @@
               <th>Količina</th>
             </tr>   
             <?php 
-            $query = $veza->prepare("SELECT a.adresa, r.naziv, s.kolicina from poslovnica a, artikal r, skladiste s where a.id = s.poslovnica and r.id = s.artikal");
-            $query->execute();
-            $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            $result = $veza->query("select a.adresa, r.naziv, s.kolicina from poslovnica a, artikal r, skladiste s where a.id = s.poslovnica and r.id = s.artikal");
             foreach($result as $r)
             { ?>
             <tr>

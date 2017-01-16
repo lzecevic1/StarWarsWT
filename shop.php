@@ -9,48 +9,40 @@
     // Dodavanje artikla u tabelu Artikal
     if(isset($_POST['dodajArtikal']))
     {
-      $naziv = $_POST['naziv'];
-      $opis = $_POST['opis'];
-      $cijena = $_POST['cijena'];
+      $naziv = htmlspecialchars($_POST['naziv'], ENT_QUOTES, "UTF-8");
+      $opis = htmlspecialchars($_POST['opis'], ENT_QUOTES, "UTF-8"); 
+      $cijena = htmlspecialchars($_POST['cijena'], ENT_QUOTES, "UTF-8");
 
       /* PROVJERA DA LI U BAZI VEC POSTOJI ARTIKAL SA ISTIM NAZIVOM */
-        $provjera = $veza->prepare("SELECT COUNT(*) FROM Artikal WHERE naziv=?");
-        $provjera->bindValue(1, htmlspecialchars($naziv, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
+        $provjera = $veza->prepare("select count(*) FROM Artikal WHERE naziv=:naziv");
+        $provjera->bindValue(":naziv", $naziv, PDO::PARAM_STR);
         $provjera->execute();
         $broj = $provjera->fetchColumn();
 
         // TODO: DODAJ ISPIS GREŠKE AKO SE DODA ISTI ARTIKAL
         if($broj == 0)
         {
-          $insert = $veza->prepare('INSERT INTO Artikal (id, naziv, opis, cijena) 
+          $insert = $veza->prepare('insert into artikal (id, naziv, opis, cijena) 
             VALUES (NULL, ?, ?, ?)');
-           $insert->bindValue(1, htmlspecialchars($naziv, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
-           $insert->bindValue(2, htmlspecialchars($opis, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR); 
-           $insert->bindValue(3, htmlspecialchars($cijena, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
-           $insert->execute();
+           $insert->execute(array($naziv, $opis, $cijena));
         }
     }
     
     // Dodavanje artikla u neku poslovnicu
     if(isset($_POST['dodajArtikalSkladiste']))
     {
-        $poslovnica = $_POST['idPoslovnice'];
-        $artikal = $_POST['idArtikla'];
-        $kolicina = $_POST['kolicina'];
+        $poslovnica =  htmlspecialchars($_POST['idPoslovnice'], ENT_QUOTES, "UTF-8");
+        $artikal = htmlspecialchars($_POST['idArtikla'], ENT_QUOTES, "UTF-8");
+        $kolicina = htmlspecialchars($_POST['kolicina'], ENT_QUOTES, "UTF-8");
 
-        $provjera = $veza->prepare("SELECT COUNT(*) FROM skladiste WHERE poslovnica=? and artikal=?");
-        $provjera->bindValue(1, htmlspecialchars($poslovnica, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
-        $provjera->bindValue(2, htmlspecialchars($artikal, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
-        $provjera->execute();
+        $provjera = $veza->prepare("select count(*) FROM skladiste WHERE poslovnica=? and artikal=?");
+        $provjera->execute(array($poslovnica, $artikal));
         $broj = $provjera->fetchColumn();
         if($broj == 0)
         {
-            $insert = $veza->prepare('INSERT INTO Skladiste (id, poslovnica, artikal, kolicina) 
+            $insert = $veza->prepare('insert into skladiste (id, poslovnica, artikal, kolicina) 
               VALUES (NULL, ?, ?, ?)');         
-           $insert->bindValue(1, htmlspecialchars($poslovnica, ENT_QUOTES, "UTF-8"), PDO::PARAM_INT);
-           $insert->bindValue(2, htmlspecialchars($artikal, ENT_QUOTES, "UTF-8"), PDO::PARAM_INT); 
-           $insert->bindValue(3, htmlspecialchars($kolicina, ENT_QUOTES, "UTF-8"), PDO::PARAM_INT);
-           $insert->execute();
+           $insert->execute(array($poslovnica, $artikal, $kolicina));
         }
 
     }
@@ -159,11 +151,9 @@
             </tr>
 
             <?php 
-            $query = $veza->prepare("SELECT * FROM artikal");
-            $query->execute();
-            $artikli = $query->fetchAll(PDO::FETCH_ASSOC);
-            foreach($artikli as $artikal)
-            { ?>
+            $artikli = $veza->query("select * from artikal");
+            foreach($artikli as $artikal){
+            ?>
             <tr>
               <td align="center"> <?php print $artikal['id'] ?> </td>
               <td align="center"> <?php print $artikal['naziv'] ?> </td>

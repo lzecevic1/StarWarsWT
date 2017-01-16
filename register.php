@@ -5,16 +5,16 @@
     {
         if(isset($_POST['name']) && isset($_POST['surname']) && isset($_POST['email']) && isset($_POST['password']))
         {
-            $ime = $_POST['name'];
-            $prezime = $_POST['surname'];
-            $email = $_POST['email'];
+            $ime = htmlspecialchars($_POST['name'], ENT_QUOTES, "UTF-8");
+            $prezime = htmlspecialchars($_POST['surname'], ENT_QUOTES, "UTF-8");
+            $email = htmlspecialchars($_POST['email'], ENT_QUOTES, "UTF-8");
             $password = md5($_POST['password']);
 
             // $veza = new PDO("mysql:dbname=starwarsdb;host=localhost;charset=utf8", "swuser", "swpass");
             $veza = new PDO('mysql:host=' . getenv('MYSQL_SERVICE_HOST') . ';port=3306;dbname=starwarsdb', 'swuser', 'swpass');
             // $veza = new PDO("mysql:dbname=starwarsdb;host=mysql-57-centos7", "swuser", "swpass");
             /* PROVJERA DA LI U BAZI VEC POSTOJI KORISNIK SA ISTIM EMAILOM */
-            $provjera = $veza->prepare("SELECT COUNT(*) FROM Osoba WHERE email=?");
+            $provjera = $veza->prepare("select COUNT(*) FROM Osoba WHERE email=?");
             $provjera->bindValue(1, htmlspecialchars($email, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
             $provjera->execute();
             $broj = $provjera->fetchColumn();
@@ -25,22 +25,17 @@
             // Ako ne postoji, dodat će se u BP             
             else
             {
-                if($_SESSION['user']=="admin")
+                if($_SESSION['user'] == "admin")
                 {
-                    $upit = $veza->prepare('INSERT INTO Osoba (id, ime, prezime, email, password, uloga) 
-                                VALUES (NULL, ?, ?, ?, ?, "sef")');
+                    $upit = $veza->prepare('insert into osoba (id, ime, prezime, email, password, uloga) 
+                                values (NULL, ?, ?, ?, ?, "sef")');
                 }
                 else
                 {
-                    $upit = $veza->prepare('INSERT INTO Osoba (id, ime, prezime, email, password, uloga) 
-                                VALUES (NULL, ?, ?, ?, ?, "user")');
+                    $upit = $veza->prepare('insert into osoba Osoba (id, ime, prezime, email, password, uloga) 
+                                values (NULL, ?, ?, ?, ?, "user")');
                 }
-
-                $upit->bindValue(1, htmlspecialchars($ime, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
-                $upit->bindValue(2, htmlspecialchars($prezime, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR); 
-                $upit->bindValue(3, htmlspecialchars($email, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
-                $upit->bindValue(4, $password, PDO::PARAM_STR);
-                $upit->execute();
+                $upit->execute(array($ime, $prezime, $email, $password));
 
                 if($_SESSION['user'] != "admin")
                 {

@@ -18,23 +18,15 @@
             $password = md5($value->Password);
             $uloga = $value->Uloga;
 
-            $provjera = $veza->prepare("SELECT COUNT(*) FROM Osoba WHERE ime=? and prezime=? and email=?");
-            $provjera->bindValue(1, (htmlspecialchars($ime, ENT_QUOTES, "UTF-8")), PDO::PARAM_STR);
-            $provjera->bindValue(2, (htmlspecialchars($prezime, ENT_QUOTES, "UTF-8")), PDO::PARAM_STR);
-            $provjera->bindValue(3, (htmlspecialchars($email, ENT_QUOTES, "UTF-8")), PDO::PARAM_STR);
-            $provjera->execute();
+            $provjera = $veza->prepare("select count(*) FROM Osoba WHERE ime=? and prezime=? and email=?");
+            $provjera->execute(array($ime, $prezime, $email));
             $broj = $provjera->fetchColumn();
             
             if($broj == 0)
             {
-                $upit = $veza->prepare('INSERT INTO Osoba (id, ime, prezime, email, password, uloga) 
+                $upit = $veza->prepare('insert into osoba (id, ime, prezime, email, password, uloga) 
                     VALUES (NULL, ?, ?, ?, ?, ?)');
-                $upit->bindValue(1, htmlspecialchars($ime, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
-                $upit->bindValue(2, htmlspecialchars($prezime, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR); 
-                $upit->bindValue(3, htmlspecialchars($email, ENT_QUOTES, "UTF-8"), PDO::PARAM_STR);
-                $upit->bindValue(4, $password, PDO::PARAM_STR);
-                $upit->bindValue(5, $uloga, PDO::PARAM_STR);
-                $upit->execute();
+                $upit->execute(array($ime, $prezime, $email, $password, $uloga));
             }
         }
     }
@@ -49,19 +41,16 @@
             $telefon = $value->BrojTelefona;
             $sef = $value->Sef;
 
-            $provjera = $veza->prepare("SELECT COUNT(*) FROM Poslovnica WHERE adresa=?");
-            $provjera->bindValue(1, (htmlspecialchars($adresa, ENT_QUOTES, "UTF-8")), PDO::PARAM_STR);
+            $provjera = $veza->prepare("select count(*) FROM Poslovnica WHERE adresa=:Adresa");
+            $provjera->bindValue(":Adresa", $adresa, PDO::PARAM_STR);
             $provjera->execute();
             $broj = $provjera->fetchColumn();
             
             if($broj == 0)
             {
-                $upit = $veza->prepare('INSERT INTO Poslovnica (id, adresa, telefon, sef) 
+                $upit = $veza->prepare('insert into poslovnica (id, adresa, telefon, sef) 
                 VALUES (NULL, ?, ?, ?)');
-                $upit->bindValue(1, (htmlspecialchars($adresa, ENT_QUOTES, "UTF-8")), PDO::PARAM_STR);
-                $upit->bindValue(2, (htmlspecialchars($telefon, ENT_QUOTES, "UTF-8")), PDO::PARAM_STR);
-                $upit->bindValue(3, (htmlspecialchars($sef, ENT_QUOTES, "UTF-8")), PDO::PARAM_INT);
-                $upit->execute();
+                $upit->execute(array($adresa, $telefon, $sef));
             }
         }
     }
